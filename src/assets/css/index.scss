@@ -1,3 +1,4 @@
+@import "./iview.scss";
 html,body,div,p,a,i,h1,h2,h3,h4,h5,span,em,section,ul,li {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -31,7 +32,6 @@ a,
 a:focus,
 a:hover {
   cursor: pointer;
-  color: inherit;
   text-decoration: none;
 }
 
@@ -79,23 +79,23 @@ a:hover {
 /*滚动条样式*/
 ::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 4px;
+  width: 10px;
   /*高宽分别对应横竖滚动条的尺寸*/
-  height: 4px;
+  height: 10px;
 }
 
 ::-moz-scrollbar {
   /*滚动条整体样式*/
-  width: 4px;
+  width: 10px;
   /*高宽分别对应横竖滚动条的尺寸*/
-  height: 4px;
+  height: 10px;
 }
 
 ::-ms-scrollbar {
   /*滚动条整体样式*/
-  width: 4px;
+  width: 10px;
   /*高宽分别对应横竖滚动条的尺寸*/
-  height: 4px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -139,3 +139,5 @@ a:hover {
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
+
+

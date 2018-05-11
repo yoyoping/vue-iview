@@ -1,5 +1,6 @@
 <template>
-  <Menu :active-name="$route.name" theme="dark" width="auto" :class="menuitemClasses">
+<div>
+  <Menu :active-name="$route.name" theme="dark" width="auto" :class="menuitemClasses" v-if="!shrink">
     <Submenu name="system">
       <template slot="title">
         <i class="iconfont icon-xitongguanli"></i>
@@ -45,19 +46,55 @@
       </MenuItem>
     </router-link>
   </Menu>
+  <div class="shrink_" v-else>
+    <Dropdown placement="right-start" class="drop">
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-xitongguanli"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem><i class="iconfont icon-erji-quanxianguanli"></i>权限管理</DropdownItem>
+        <DropdownItem><i class="iconfont icon-weibiaoti5"></i>账户管理</DropdownItem>
+        <DropdownItem><i class="iconfont icon-jiaoseguanli"></i>角色管理</DropdownItem>
+        <DropdownItem><i class="iconfont icon-caidan"></i>菜单管理</DropdownItem>
+        <DropdownItem><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop">
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-yonghuguanli"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem><i class="iconfont icon-yonghuguanli"></i>用户管理</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop">
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-fuwuguwen"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem><i class="iconfont icon-fuwuguwen"></i>顾问列表</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop">
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-pingjia"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem><i class="iconfont icon-pingjia"></i>评价列表</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </div>
+</div>
 </template>
 
 <script>
-import { Menu, Submenu, MenuItem, Icon } from 'iview'
 export default {
-  components: {
-    Menu, Submenu, MenuItem, Icon
-  },
   data () {
     return {
       isCollapsed: false
     }
   },
+  props: ['shrink'],
   methods: {
     menuitemClasses () {
       return [
@@ -106,6 +143,11 @@ export default {
     font-size: 22px;
   }
   .iconfont{
-    font-size: 13px;
+    font-size: 13px;color: hsla(0,0%,100%,.7);
+  }
+  .drop{
+    .iconfont{
+      font-size: 18px;color: #fff;
+    }
   }
 </style>

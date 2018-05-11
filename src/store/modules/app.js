@@ -2,6 +2,7 @@ const app = {
   state: {
     tags: localStorage.pageOpenList, // 打开的标签页
     isKeep: true, // 是否缓存
+    messageCount: 0, // 新消息
     count: 0,
     type: '1'
   },
@@ -21,6 +22,9 @@ const app = {
     },
     SET_KEEP: (state, res) => {
       state.isKeep = res
+    },
+    SET_MESSAGECOUNT (state, count) {
+      state.messageCount = count
     }
   },
   actions: {

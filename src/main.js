@@ -6,16 +6,18 @@ import Vuex from 'vuex'
 import store from './store'
 import App from './App'
 import router from './router'
-import fetch from './utils'
+import axios from './utils/axios'
 import posts from './utils/post'
+import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import './utils/guard'
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
+Vue.use(iView)
 
 // 创建全局请求
-Vue.prototype.fetch = fetch
+Vue.prototype.axios = axios
 Vue.prototype.postData = posts
 
 /* eslint-disable no-new */

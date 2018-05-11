@@ -46,7 +46,7 @@ export default new Router({
           component: _import_('system/auth/Index'),
           meta: {
             title: '权限管理',
-            role: 'user'
+            role: 'admin'
           }
         },
         {
@@ -55,7 +55,7 @@ export default new Router({
           component: _import_('system/account/Index'),
           meta: {
             title: '账号管理',
-            role: 'user'
+            role: 'admin'
           }
         },
         {
@@ -64,7 +64,7 @@ export default new Router({
           component: _import_('system/role/Index'),
           meta: {
             title: '角色管理',
-            role: 'user'
+            role: 'admin'
           }
         },
         {
@@ -73,7 +73,7 @@ export default new Router({
           component: _import_('system/menu/Index'),
           meta: {
             title: '菜单管理',
-            role: 'user'
+            role: 'admin'
           }
         },
         {
@@ -82,7 +82,7 @@ export default new Router({
           component: _import_('system/log/Index'),
           meta: {
             title: '操作日志',
-            role: 'user'
+            role: 'admin'
           }
         }
       ]

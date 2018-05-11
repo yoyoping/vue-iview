@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.15.0",
     "babel-plugin-import": "^1.7.0",
     "babel-polyfill": "^6.26.0",
     "iview": "^2.13.1",
