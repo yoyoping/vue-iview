@@ -1,0 +1,23 @@
+.drop {
+  margin: 7px 0;
+}
+
+.drop .ivu-dropdown-rel {
+  text-align: center;
+  width: 66px;
+  padding-right: 6px;
+}
+
+.drop .iconfont {
+  font-size: 18px;
+}
+
+.drop .ivu-dropdown-menu {
+  color: #333;
+}
+
+.drop .ivu-dropdown-menu .iconfont {
+  font-size: 13px !important;
+  color: #333 !important;
+  margin-right: 5px;
+}

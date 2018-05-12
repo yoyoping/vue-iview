@@ -6,8 +6,7 @@
       width="600"
       :mask-closable="false"
       :closable="false"
-      @on-ok="ok"
-      @on-cancel="cancel">
+      @on-ok="ok">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
         <FormItem label="ID" prop="id">
           <Input v-model="formValidate.id" disabled></Input>
@@ -55,6 +54,7 @@ export default {
           align: 'center'
         },
         {
+          width: 100,
           title: 'ID',
           key: 'id',
           align: 'center'
@@ -217,6 +217,9 @@ export default {
     },
     handleReset (name) {
       this.$refs[name].resetFields()
+    },
+    ok () {
+      this.$Message.success('已保存修改')
     }
   }
 }
