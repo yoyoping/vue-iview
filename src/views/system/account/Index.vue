@@ -1,5 +1,20 @@
 <template>
   <div>
+    <Form ref="formInline" :model="formInline" inline>
+      <FormItem prop="user">
+        <Input type="text" v-model="formInline.user" placeholder="Username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem prop="password">
+        <Input type="password" v-model="formInline.password" placeholder="Password">
+          <Icon type="ios-locked-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary">查询</Button>
+      </FormItem>
+    </Form>
     <Table :columns="columns8" :data="data7" size="small" ref="table"></Table>
     <br>
     <Button type="primary" size="large" @click="exportData(1)">
@@ -11,12 +26,21 @@
     <Button type="primary" size="large" @click="exportData(3)">
       <Icon type="ios-download-outline"></Icon> Export custom data
     </Button>
+    <div style="margin: 10px;overflow: hidden">
+      <div style="float: right;">
+        <Page :total="100" :current="1" @on-change="changePage"></Page>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      formInline: {
+        user: '',
+        password: ''
+      },
       columns8: [
         {
           'title': 'Name',

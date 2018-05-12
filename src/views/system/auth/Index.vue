@@ -22,7 +22,27 @@
         </FormItem>
       </Form>
     </Modal>
+    <Form ref="formInline" :model="formInline" inline>
+      <FormItem prop="user">
+        <Input type="text" v-model="formInline.user" placeholder="Username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem prop="password">
+        <Input type="password" v-model="formInline.password" placeholder="Password">
+          <Icon type="ios-locked-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary">查询</Button>
+      </FormItem>
+    </Form>
     <Table border :columns="columns7" :data="data6"></Table>
+    <div style="margin: 10px;overflow: hidden">
+      <div style="float: right;">
+        <Page :total="100" :current="1" @on-change="changePage"></Page>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -30,6 +50,10 @@ export default {
   data () {
     return {
       mod: false, // 是否弹出修改框
+      formInline: {
+        user: '',
+        password: ''
+      },
       formValidate: { // 弹出框数据
         id: '1',
         Identification: 'auth',

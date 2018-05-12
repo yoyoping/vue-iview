@@ -33,8 +33,12 @@
             </div>
           </Row>
         </Header>
+        <Tags></Tags>
         <Content :style="{margin: '20px', minHeight: '260px'}">
-          <router-view></router-view>
+          <keep-alive v-if="isKeep">
+            <router-view></router-view>
+          </keep-alive>
+          <router-view v-else></router-view>
         </Content>
       </Layout>
     </Layout>
@@ -45,9 +49,10 @@ import Sidebar from './Sidebar.vue'
 import Breadcrumb from '_components/breadcrumb'
 import FullScreen from '_components/fullScreen'
 import MessageTip from '_components/messageTip'
+import Tags from '_components/Tags'
 export default {
   components: {
-    Breadcrumb, Sidebar, FullScreen, MessageTip
+    Breadcrumb, Sidebar, FullScreen, MessageTip, Tags
   },
   data () {
     return {
@@ -72,6 +77,9 @@ export default {
     },
     mesCount () {
       return this.$store.state.app.messageCount
+    },
+    isKeep () {
+      return this.$store.state.app.isKeep
     }
   },
   methods: {

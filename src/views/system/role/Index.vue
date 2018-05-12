@@ -1,6 +1,26 @@
 <template>
   <div>
+    <Form ref="formInline" :model="formInline" inline>
+      <FormItem prop="user">
+        <Input type="text" v-model="formInline.user" placeholder="Username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem prop="password">
+        <Input type="password" v-model="formInline.password" placeholder="Password">
+          <Icon type="ios-locked-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary">查询</Button>
+      </FormItem>
+    </Form>
     <Table border :columns="columns7" :data="data6"></Table>
+    <div style="margin: 10px;overflow: hidden">
+      <div style="float: right;">
+        <Page :total="100" :current="1" @on-change="changePage"></Page>
+      </div>
+    </div>
     <Modal
       v-model="mod"
       title="权限修改"
@@ -46,6 +66,10 @@
 export default {
   data () {
     return {
+      formInline: {
+        user: '',
+        password: ''
+      },
       titles: ['未拥有权限', '已拥有权限'],
       data2: this.getMockData(),
       targetKeys2: this.getTargetKeys(),
@@ -200,7 +224,7 @@ export default {
       this.data6.splice(index, 1)
     },
     getMockData () {
-      let mockData = [];
+      let mockData = []
       for (let i = 1; i <= 20; i++) {
         mockData.push({
           key: i.toString(),
@@ -236,4 +260,3 @@ export default {
   margin-bottom: 30px;
 }
 </style>
-

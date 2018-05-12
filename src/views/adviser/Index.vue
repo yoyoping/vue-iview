@@ -1,5 +1,20 @@
 <template>
   <div>
+    <Form ref="formInline" :model="formInline" inline>
+      <FormItem prop="user">
+        <Input type="text" v-model="formInline.user" placeholder="Username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem prop="password">
+        <Input type="password" v-model="formInline.password" placeholder="Password">
+          <Icon type="ios-locked-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary">查询</Button>
+      </FormItem>
+    </Form>
     <Table :data="tableData1" :columns="tableColumns1" stripe></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
@@ -12,6 +27,10 @@
 export default {
   data () {
     return {
+      formInline: {
+        user: '',
+        password: ''
+      },
       tableData1: this.mockTableData1(),
       tableColumns1: [{
         title: 'Name',

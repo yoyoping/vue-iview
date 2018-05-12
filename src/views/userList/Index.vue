@@ -14,6 +14,11 @@
       <Checkbox label="month">Month Active</Checkbox>
     </Checkbox-group>
     <Table :data="tableData2" :columns="tableColumns2" border></Table>
+    <div style="margin: 10px;overflow: hidden">
+      <div style="float: right;">
+        <Page :total="100" :current="1" @on-change="changePage"></Page>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -152,11 +157,8 @@ export default {
           sortable: true
         }
       }
-
       let data = [table2ColumnList.name]
-
       this.tableColumnsChecked.forEach(col => data.push(table2ColumnList[col]))
-
       return data
     },
     changeTableColumns () {

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Menu :active-name="$route.name" theme="dark" width="auto" :class="menuitemClasses" v-if="!shrink">
+  <Menu :active-name="$route.name" theme="dark" width="auto" :class="menuitemClasses" v-if="!shrink" :open-names="[$route.matched[0].name]">
     <Submenu name="system">
       <template slot="title">
         <i class="iconfont icon-xitongguanli"></i>
@@ -45,6 +45,20 @@
       <span>评价列表</span>
       </MenuItem>
     </router-link>
+    <Submenu name="system">
+      <template slot="title">
+        <i class="iconfont icon-xitongguanli"></i>
+        组件管理
+      </template>
+      <router-link to="/component/editor">
+        <MenuItem name="editor">
+        <i class="iconfont icon-erji-quanxianguanli"></i>富文本</MenuItem>
+      </router-link>
+      <router-link to="/component/upload">
+        <MenuItem name="upload">
+        <i class="iconfont icon-erji-quanxianguanli"></i>文件上传</MenuItem>
+      </router-link>
+    </Submenu>
   </Menu>
   <div class="shrink_" v-else>
     <Dropdown placement="right-start" class="drop">
@@ -101,6 +115,14 @@ export default {
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : ''
       ]
+    }
+  },
+  watch: {
+    '$route': function(newval, oldval) {
+      console.log(newval)
+      let isKeep = newval.query.isKeep === true ? true : false
+      this.isKeep = isKeep
+      this.$store.commit('SET_KEEP', isKeep)
     }
   }
 }

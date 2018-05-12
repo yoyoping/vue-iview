@@ -20,7 +20,7 @@
         <p slot="title">
           <i class="iconfont icon-pingjia"></i>
           编辑
-          </p>
+        </p>
         <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
           <FormItem label="父级菜单" prop="fname">
             <Input v-model="formValidate.fname" disabled></Input>
@@ -39,7 +39,7 @@
           </FormItem>
           <FormItem class="btn">
             <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-            <Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+            <Button type="ghost" @click="$refs['formValidate'].resetFields()" style="margin-left: 8px">Reset</Button>
           </FormItem>
         </Form>
       </Card>
@@ -48,82 +48,84 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        formValidate:{ // 表单数据
-          fname: '菜单一',
-          name: '',
-          icon: '',
-          path: '',
-          role: ''
-        },
-        ruleValidate: {
-          name: [
-            { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-          ],
-          icon: [
-            { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-          ],
-          path: [
-            { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-          ],
-          role: [
-            { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+export default {
+  data () {
+    return {
+      formValidate: { // 表单数据
+        fname: '菜单一',
+        name: '',
+        icon: '',
+        path: '',
+        role: ''
+      },
+      ruleValidate: {
+        name: [
+          { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+        ],
+        icon: [
+          { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+        ],
+        path: [
+          { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+        ],
+        role: [
+          { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+        ]
+      },
+      data2: [
+        {
+          title: '系统管理',
+          expand: true,
+          children: [
+            {
+              title: '权限管理',
+              expand: true
+            },
+            {
+              title: '账户管理',
+              expand: true
+            },
+            {
+              title: '角色管理',
+              expand: true
+            },
+            {
+              title: '菜单管理',
+              expand: true
+            },
+            {
+              title: '操作日志',
+              expand: true
+            }
           ]
         },
-        data2: [{
-            title: '系统管理',
-            expand: true,
-            children: [{
-                title: '权限管理',
-                expand: true
-              },
-              {
-                title: '账户管理',
-                expand: true
-              },
-              {
-                title: '角色管理',
-                expand: true
-              },
-              {
-                title: '菜单管理',
-                expand: true
-              },
-              {
-                title: '操作日志',
-                expand: true
-              }
-            ]
-          },
-          {
-            title: '用户管理',
-            expand: true,
-          },
-          {
-            title: '顾问列表',
-            expand: true,
-          },
-          {
-            title: '评论列表',
-            expand: true,
-          }
-        ]
-      }
-    },
-    methods: {
-      handleSubmit (formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$Message.success('Success!')
-          } else {
-            this.$Message.error('Fail!')
-          }
-        })
-      }
+        {
+          title: '用户管理',
+          expand: true
+        },
+        {
+          title: '顾问列表',
+          expand: true
+        },
+        {
+          title: '评论列表',
+          expand: true
+        }
+      ]
+    }
+  },
+  methods: {
+    handleSubmit (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$Message.success('Success!')
+        } else {
+          this.$Message.error('Fail!')
+        }
+      })
     }
   }
+}
 </script>
 <style lang="scss" scoped>
 .action{
@@ -132,5 +134,7 @@
 .btn{
   margin-top: 20px;
 }
+.ivu-card-bordered{
+  height: 500px;overflow: auto;
+}
 </style>
-

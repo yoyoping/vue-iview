@@ -134,6 +134,33 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/component',
+      name: 'component',
+      component: _import_('Layout'),
+      redirect: '/component/editor',
+      meta: {
+        title: '组件管理'
+      },
+      children: [
+        {
+          path: 'editor',
+          name: 'editor',
+          component: _import_('component/editor/Index'),
+          meta: {
+            title: '富文本'
+          }
+        },
+        {
+          path: 'upload',
+          name: 'upload',
+          component: _import_('component/upload/Index'),
+          meta: {
+            title: '文件上传'
+          }
+        }
+      ]
     }
   ]
 })
