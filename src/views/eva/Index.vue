@@ -111,6 +111,11 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    changePage (num) {
+
+    }
   }
 }
 </script>

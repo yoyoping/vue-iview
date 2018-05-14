@@ -14,10 +14,6 @@ export default {
     return {
       breadcrumbList: []
     }
-  },
-  created () {
-    console.log(this.$route)
-
   }
 }
 </script>

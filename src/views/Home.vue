@@ -38,23 +38,23 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        list: []
-      }
-    },
-    mounted() {
-      this.getList()
-    },
-    methods: {
-      getList() {
-        this.axios.get('/userlist').then(res => {
-          console.log(res)
-        })
-      }
+export default {
+  data () {
+    return {
+      list: []
+    }
+  },
+  mounted () {
+    this.getList()
+  },
+  methods: {
+    getList () {
+      this.axios.get('/userlist').then(res => {
+        console.log(res)
+      })
     }
   }
+}
 </script>
 <style lang="scss" scoped>
 .user-infor{
@@ -111,4 +111,3 @@
   margin-top: 8px;
 }
 </style>
-

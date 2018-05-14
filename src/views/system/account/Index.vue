@@ -304,6 +304,10 @@ export default {
           data: this.data7.filter((data, index) => index < 4)
         })
       }
+    },
+    // 分页
+    changePage (num) {
+
     }
   }
 }

@@ -5,6 +5,7 @@
       :closable="item.name === 'home' ? false : true"
       :color="item.name === $route.name ? 'blue' : 'default'"
       v-for="(item, index) in tags"
+      :key="item.name"
       @click.native="linkTo(item.url)"
       @on-close="close(index, item.name)">
       {{item.title}}

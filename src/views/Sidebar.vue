@@ -22,9 +22,9 @@
         <MenuItem name="menu">
         <i class="iconfont icon-caidan"></i>菜单管理</MenuItem>
       </router-link>
-      <router-link to="/system/log">
-        <MenuItem name="log">
-        <i class="iconfont icon-caozuorizhi"></i>操作日志</MenuItem>
+      <router-link to="/system/sensitive">
+        <MenuItem name="sensitive">
+        <i class="iconfont icon-caidan"></i>敏感词汇</MenuItem>
       </router-link>
     </Submenu>
     <router-link to="/userList">
@@ -36,16 +36,34 @@
     <router-link to="/adviser">
       <MenuItem name="adviser">
       <i class="iconfont icon-fuwuguwen"></i>
-      <span>顾问列表</span>
+      <span>顾问管理</span>
       </MenuItem>
     </router-link>
     <router-link to="/eva">
       <MenuItem name="eva">
       <i class="iconfont icon-pingjia"></i>
-      <span>评价列表</span>
+      <span>评价管理</span>
       </MenuItem>
     </router-link>
-    <Submenu name="system">
+    <router-link to="/complaints">
+      <MenuItem name="complaints">
+      <i class="iconfont icon-pingjia"></i>
+      <span>投诉管理</span>
+      </MenuItem>
+    </router-link>
+    <router-link to="/errorCount">
+      <MenuItem name="errorCount">
+      <i class="iconfont icon-caozuorizhi"></i>
+      <span>报错统计</span>
+      </MenuItem>
+    </router-link>
+    <router-link to="/log">
+      <MenuItem name="log">
+      <i class="iconfont icon-caozuorizhi"></i>
+      <span>操作日志</span>
+      </MenuItem>
+    </router-link>
+    <!-- <Submenu name="system">
       <template slot="title">
         <i class="iconfont icon-xitongguanli"></i>
         组件管理
@@ -58,43 +76,67 @@
         <MenuItem name="upload">
         <i class="iconfont icon-erji-quanxianguanli"></i>文件上传</MenuItem>
       </router-link>
-    </Submenu>
+    </Submenu> -->
   </Menu>
   <div class="shrink_" v-else>
-    <Dropdown placement="right-start" class="drop">
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
         <i class="iconfont icon-xitongguanli"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem><i class="iconfont icon-erji-quanxianguanli"></i>权限管理</DropdownItem>
-        <DropdownItem><i class="iconfont icon-weibiaoti5"></i>账户管理</DropdownItem>
-        <DropdownItem><i class="iconfont icon-jiaoseguanli"></i>角色管理</DropdownItem>
-        <DropdownItem><i class="iconfont icon-caidan"></i>菜单管理</DropdownItem>
-        <DropdownItem><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
+        <DropdownItem name="auth"><i class="iconfont icon-erji-quanxianguanli"></i>权限管理</DropdownItem>
+        <DropdownItem name="account"><i class="iconfont icon-weibiaoti5"></i>账户管理</DropdownItem>
+        <DropdownItem name="role"><i class="iconfont icon-jiaoseguanli"></i>角色管理</DropdownItem>
+        <DropdownItem name="menu"><i class="iconfont icon-caidan"></i>菜单管理</DropdownItem>
+        <DropdownItem name="sensitive"><i class="iconfont icon-caidan"></i>敏感词汇</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-    <Dropdown placement="right-start" class="drop">
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
         <i class="iconfont icon-yonghuguanli"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem><i class="iconfont icon-yonghuguanli"></i>用户管理</DropdownItem>
+        <DropdownItem name="userList"><i class="iconfont icon-yonghuguanli"></i>用户管理</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-    <Dropdown placement="right-start" class="drop">
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
         <i class="iconfont icon-fuwuguwen"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem><i class="iconfont icon-fuwuguwen"></i>顾问列表</DropdownItem>
+        <DropdownItem name="adviser"><i class="iconfont icon-fuwuguwen"></i>顾问管理</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-    <Dropdown placement="right-start" class="drop">
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
         <i class="iconfont icon-pingjia"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem><i class="iconfont icon-pingjia"></i>评价列表</DropdownItem>
+        <DropdownItem name="eva"><i class="iconfont icon-pingjia"></i>评价管理</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-pingjia"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem name="complaints"><i class="iconfont icon-pingjia"></i>投诉管理</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-pingjia"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem name="errorCount"><i class="iconfont icon-pingjia"></i>报错统计</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-caozuorizhi"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem name="log"><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>
@@ -115,11 +157,14 @@ export default {
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : ''
       ]
+    },
+    // 切换路由
+    handleClickUserDropdown (name) {
+      this.$router.push({name: name})
     }
   },
   watch: {
-    '$route': function(newval, oldval) {
-      console.log(newval)
+    '$route': function (newval, oldval) {
       let isKeep = newval.query.isKeep === true ? true : false
       this.isKeep = isKeep
       this.$store.commit('SET_KEEP', isKeep)

@@ -99,24 +99,36 @@ export default {
         },
         {
           width: 100,
-          title: 'ID',
-          key: 'id',
+          title: '序号',
+          key: 'No',
           align: 'center'
         },
         {
-          title: '标识',
-          key: 'identification',
+          title: '昵称',
+          key: 'nickname',
           align: 'center'
         },
         {
-          title: '名称',
-          key: 'name',
+          title: '账号',
+          key: 'account',
+          align: 'center'
+        },
+        {
+          title: '密码',
+          key: 'password',
           align: 'center'
         },
         {
           title: '权限',
           key: 'auth',
-          align: 'center'
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('span', {
+
+              }, '权限55555')
+            ])
+          }
         },
         {
           title: '创建时间',
@@ -148,7 +160,7 @@ export default {
                     this.show(params.index)
                   }
                 }
-              }, '修改'),
+              }, '编辑'),
               h('Button', {
                 props: {
                   type: 'error',
@@ -166,50 +178,50 @@ export default {
       ],
       data6: [
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          id: 1,
-          identification: 'administrator',
-          name: 'administrator',
-          auth: '权限1',
+          nickname: 'administrator',
+          account: 'admin',
+          password: '123456',
+          phone: '13648448972',
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         }
@@ -251,6 +263,10 @@ export default {
           this.mod = false
         }
       })
+    },
+    // 分页
+    changePage (num) {
+
     }
   }
 }

@@ -96,7 +96,10 @@ export default {
         {
           title: '路由',
           key: 'path',
-          align: 'center'
+          align: 'center',
+          render: (h, params) => {
+            return h('div', this.path_(params.row.path, h))
+          }
         },
         {
           title: '创建时间',
@@ -149,7 +152,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -157,7 +160,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -165,7 +168,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -173,7 +176,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -181,7 +184,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -189,7 +192,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3','/admin4'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -197,7 +200,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -205,7 +208,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -213,7 +216,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: '/admin',
+          path: ['/admin2','/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         }
@@ -221,6 +224,24 @@ export default {
     }
   },
   methods: {
+    path_ (data, h) {
+      let p = []
+      data.forEach(item => {
+        p.push(
+          h('Tag', {
+          props: {
+            color: 'blue'
+          },
+          on: {
+            click: () => {
+              console.log(params.row.path)
+            }
+          }
+        }, item)
+        )
+      })
+      return p
+    },
     show (index) {
       this.$Modal.info({
         title: 'User Info',
@@ -244,6 +265,8 @@ export default {
     },
     ok () {
       this.$Message.success('已保存修改')
+    },
+    changePage (num) {
     }
   }
 }

@@ -19,7 +19,7 @@
               <message-tip v-model="mesCount" class="action"></message-tip>
               <!-- <theme-switch></theme-switch> -->
 
-              <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown" @visible-change="select_change(event)">
+              <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
                 <a href="javascript:void(0)">
                   <span class="main-user-name">{{ userName }}</span>
                   <Icon type="arrow-down-b"></Icon>
@@ -109,9 +109,6 @@ export default {
           }
         })
       }
-    },
-    select_change (e) {
-      debugger
     }
   }
 }

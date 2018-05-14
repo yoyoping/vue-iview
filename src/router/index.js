@@ -77,11 +77,11 @@ export default new Router({
           }
         },
         {
-          path: 'log',
-          name: 'log',
-          component: _import_('system/log/Index'),
+          path: 'sensitive',
+          name: 'sensitive',
+          component: _import_('system/sensitive/Index'),
           meta: {
-            title: '操作日志',
+            title: '敏感词汇',
             role: 'admin'
           }
         }
@@ -114,7 +114,7 @@ export default new Router({
           name: 'adviser',
           component: _import_('adviser/Index'),
           meta: {
-            title: '顾问列表'
+            title: '顾问管理'
           }
         }
       ]
@@ -130,7 +130,58 @@ export default new Router({
           name: 'eva',
           component: _import_('eva/Index'),
           meta: {
-            title: '评价列表'
+            title: '评价管理'
+          }
+        }
+      ]
+    },
+    {
+      path: 'complaints',
+      name: '',
+      component: _import_('Layout'),
+      redirect: '/complaints',
+      children: [
+        {
+          path: '/complaints',
+          name: 'complaints',
+          component: _import_('complaints/Index'),
+          meta: {
+            title: '投诉管理',
+            role: 'admin'
+          }
+        }
+      ]
+    },
+    {
+      path: 'errorCount',
+      name: '',
+      component: _import_('Layout'),
+      redirect: '/errorCount',
+      children: [
+        {
+          path: '/errorCount',
+          name: 'errorCount',
+          component: _import_('errorCount/Index'),
+          meta: {
+            title: '报错统计',
+            role: 'admin'
+          }
+        }
+      ]
+    },
+    {
+      path: 'log',
+      name: '',
+      component: _import_('Layout'),
+      redirect: '/log',
+      children: [
+        {
+          path: '/log',
+          name: 'log',
+          component: _import_('log/Index'),
+          meta: {
+            title: '操作日志',
+            role: 'admin'
           }
         }
       ]
