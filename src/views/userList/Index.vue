@@ -31,26 +31,6 @@ export default {
         nickname: '',
         phone: ''
       },
-      titles: ['未拥有权限', '已拥有权限'],
-      data2: this.getMockData(),
-      targetKeys2: this.getTargetKeys(),
-      formValidate: { // 弹出框数据
-        id: '1',
-        Identification: 'auth',
-        name: 'admin',
-        path: '/admin'
-      },
-      ruleValidate: {
-        Identification: [
-          { required: true, message: '请输入标识', trigger: 'blur' }
-        ],
-        name: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
-        ],
-        path: [
-          { required: true, message: '请输入路由地址', trigger: 'change' }
-        ]
-      },
       columns7: [
         {
           type: 'selection',
@@ -105,8 +85,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    console.log(params)
-                    this.show(params.row.id)
+                    this.$router.push(`/userDetail/${params.row.id}`)
                   }
                 }
               }, '详情'),
@@ -186,35 +165,6 @@ export default {
   methods: {
     show (id) {
       this.$Message.info(id)
-    },
-    getMockData () {
-      let mockData = []
-      for (let i = 1; i <= 20; i++) {
-        mockData.push({
-          key: i.toString(),
-          label: 'Content ' + i,
-          description: 'The desc of content  ' + i,
-          disabled: Math.random() * 3 < 1
-        })
-      }
-      return mockData
-    },
-    getTargetKeys () {
-      return this.getMockData().filter(() => Math.random() * 2 > 1).map(item => item.key)
-    },
-    handleChange2 (newTargetKeys) {
-      this.targetKeys2 = newTargetKeys
-    },
-    filterMethod (data, query) {
-      return data.label.indexOf(query) > -1
-    },
-    handleSubmit (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.$Message.success('修改成功!')
-          this.mod = false
-        }
-      })
     },
     // 分页
     changePage (num) {

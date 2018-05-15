@@ -210,7 +210,7 @@ export default {
     font-size: 22px;
   }
   .iconfont{
-    font-size: 13px;color: hsla(0,0%,100%,.7);
+    font-size: 13px;
   }
   .drop{
     .iconfont{

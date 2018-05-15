@@ -152,7 +152,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -160,7 +160,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -168,7 +168,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -176,7 +176,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -184,7 +184,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -192,7 +192,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3','/admin4'],
+          path: ['/admin2', '/admin3', '/admin4'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -200,7 +200,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -208,7 +208,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
@@ -216,7 +216,7 @@ export default {
           id: 1,
           Identification: 'auth',
           name: 'John Brown',
-          path: ['/admin2','/admin3'],
+          path: ['/admin2', '/admin3'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         }
@@ -229,15 +229,10 @@ export default {
       data.forEach(item => {
         p.push(
           h('Tag', {
-          props: {
-            color: 'blue'
-          },
-          on: {
-            click: () => {
-              console.log(params.row.path)
+            props: {
+              color: 'blue'
             }
-          }
-        }, item)
+          }, item)
         )
       })
       return p

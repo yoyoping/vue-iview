@@ -1,29 +1,38 @@
 <template>
   <div>
-    <Form ref="formInline" :model="formInline" inline>
-      <FormItem prop="user">
-        <Input type="text" v-model="formInline.user" placeholder="Username">
-          <Icon type="ios-person-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem prop="password">
-        <Input type="password" v-model="formInline.password" placeholder="Password">
-          <Icon type="ios-locked-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem>
-        <Button type="primary">查询</Button>
-      </FormItem>
-    </Form>
+    <Row>
+      <Col span="17">
+        <Form ref="formInline" :model="formInline" inline>
+          <FormItem prop="user">
+            <Input type="text" v-model="formInline.user" placeholder="Username">
+              <Icon type="ios-person-outline" slot="prepend"></Icon>
+            </Input>
+          </FormItem>
+          <FormItem prop="password">
+            <Input type="password" v-model="formInline.password" placeholder="Password">
+              <Icon type="ios-locked-outline" slot="prepend"></Icon>
+            </Input>
+          </FormItem>
+          <FormItem>
+            <Button type="primary">查询</Button>
+          </FormItem>
+        </Form>
+      </Col>
+      <Col span="7">
+        <Button type="primary" :style="{float: 'right'}" @click="addRole = true">添加角色</Button>
+      </Col>
+    </Row>
+
     <Table border :columns="columns7" :data="data6"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
         <Page :total="100" :current="1" @on-change="changePage"></Page>
       </div>
     </div>
+    <!-- 修改角色的对话框 -->
     <Modal
       v-model="mod"
-      title="权限修改"
+      title="角色修改"
       width="600"
       :mask-closable="false"
       :closable="false"
@@ -34,17 +43,20 @@
         <Button type="ghost" @click="mod = false" style="margin-left: 8px">取消</Button>
       </p>
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-        <FormItem label="ID" prop="id">
+        <!-- <FormItem label="ID" prop="id">
           <Input v-model="formValidate.id" disabled></Input>
+        </FormItem> -->
+        <FormItem label="昵称" prop="nickname">
+          <Input v-model="formValidate.nickname" placeholder="请输入昵称"></Input>
         </FormItem>
-        <FormItem label="标识" prop="Identification">
-          <Input v-model="formValidate.Identification" placeholder="请输入标识"></Input>
+        <FormItem label="账号" prop="account">
+          <Input v-model="formValidate.account" placeholder="请输入账号"></Input>
         </FormItem>
-        <FormItem label="名称" prop="name">
-          <Input v-model="formValidate.name" placeholder="请输入名称"></Input>
+        <FormItem label="密码" prop="password">
+          <Input v-model="formValidate.password" placeholder="请输入密码"></Input>
         </FormItem>
-        <FormItem label="路由" prop="path">
-          <Input v-model="formValidate.path" placeholder="请输入路由地址"></Input>
+        <FormItem label="权限" prop="auth">
+          <Input v-model="formValidate.auth" disabled placeholder="请选择权限"></Input>
         </FormItem>
         <FormItem label="" prop="">
           <Transfer
@@ -58,7 +70,49 @@
           </Transfer>
         </FormItem>
       </Form>
+    </Modal>
 
+    <!-- 添加角色 -->
+    <Modal
+      v-model="addRole"
+      title="角色修改"
+      width="600"
+      :mask-closable="false"
+      :closable="false"
+      class="footerHide"
+      @on-ok="ok('formValidate')">
+      <p slot="footer">
+        <Button type="primary">提交</Button>
+        <Button type="ghost" @click="addRole = false" style="margin-left: 8px">取消</Button>
+      </p>
+      <Form ref="addForm" :model="addForm" :rules="ruleValidate" :label-width="80">
+        <!-- <FormItem label="ID" prop="id">
+          <Input v-model="formValidate.id" disabled></Input>
+        </FormItem> -->
+        <FormItem label="昵称" prop="nickname">
+          <Input v-model="addForm.nickname" placeholder="请输入昵称"></Input>
+        </FormItem>
+        <FormItem label="账号" prop="account">
+          <Input v-model="addForm.account" placeholder="请输入账号"></Input>
+        </FormItem>
+        <FormItem label="密码" prop="password">
+          <Input v-model="addForm.password" placeholder="请输入密码"></Input>
+        </FormItem>
+        <FormItem label="权限" prop="auth">
+          <Input v-model="addForm.auth" disabled placeholder="请选择权限"></Input>
+        </FormItem>
+        <FormItem label="" prop="">
+          <Transfer
+            class="Transfer"
+            :titles="titles"
+            :data="data2"
+            :target-keys="targetKeys2"
+            filterable
+            :filter-method="filterMethod"
+            @on-change="handleChange2">
+          </Transfer>
+        </FormItem>
+      </Form>
     </Modal>
   </div>
 </template>
@@ -70,25 +124,36 @@ export default {
         user: '',
         password: ''
       },
+      addRole: false,
       titles: ['未拥有权限', '已拥有权限'],
       data2: this.getMockData(),
       targetKeys2: this.getTargetKeys(),
       mod: false,
       formValidate: { // 弹出框数据
         id: '1',
-        Identification: 'auth',
-        name: 'admin',
-        path: '/admin'
+        nickname: 'hahaha',
+        account: 'admin',
+        password: '123456',
+        auth: '/userlist'
+      },
+      addForm: { // 弹出框数据
+        nickname: '',
+        account: '',
+        password: '',
+        auth: ''
       },
       ruleValidate: {
-        Identification: [
-          { required: true, message: '请输入标识', trigger: 'blur' }
+        nickname: [
+          { required: true, message: '请输入昵称', trigger: 'blur' }
         ],
-        name: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
+        account: [
+          { required: true, message: '请输入账户', trigger: 'blur' }
         ],
-        path: [
-          { required: true, message: '请输入路由地址', trigger: 'change' }
+        password: [
+          { required: true, message: '请输入密码', trigger: 'change' }
+        ],
+        auth: [
+          { required: true, message: '请选择权限', trigger: 'change' }
         ]
       },
       columns7: [
@@ -101,7 +166,10 @@ export default {
           width: 100,
           title: '序号',
           key: 'No',
-          align: 'center'
+          align: 'center',
+          render: (h, params) => {
+            return h('span', params.index + 1)
+          }
         },
         {
           title: '昵称',

@@ -23,14 +23,14 @@ export default {
     close (index, name) {
       this.tags.splice(index, 1)
       if (name === this.$route.name) {
-        let url = this.tags[this.tags.length - 1].url;
-        this.$router.push({ path: url, query: { isKeep: true }})
+        let url = this.tags[this.tags.length - 1].url
+        this.$router.push({path: url, query: { isKeep: true }})
       }
       this.$store.commit('TAGS', JSON.stringify(this.tags))
     },
     linkTo (url) {
       this.$router.push(url)
-      this.$router.push({ path: url, query: { isKeep: true }})
+      this.$router.push({path: url, query: { isKeep: true }})
     }
   }
 }

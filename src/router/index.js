@@ -100,6 +100,14 @@ export default new Router({
           meta: {
             title: '用户管理'
           }
+        },
+        {
+          path: '/userDetail/:id',
+          name: 'userDetail',
+          component: _import_('userList/Detail'),
+          meta: {
+            title: '用户详情'
+          }
         }
       ]
     },
@@ -115,6 +123,14 @@ export default new Router({
           component: _import_('adviser/Index'),
           meta: {
             title: '顾问管理'
+          }
+        },
+        {
+          path: '/adviserDetail/:id',
+          name: 'adviserDetail',
+          component: _import_('adviser/Detail'),
+          meta: {
+            title: '顾问详情'
           }
         }
       ]
