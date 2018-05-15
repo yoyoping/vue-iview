@@ -56,7 +56,7 @@ export default {
           key: 'stars',
           align: 'center',
           render: (h, params) => {
-            return h('Rate',{
+            return h('Rate', {
               props: {
                 disabled: true,
                 value: params.row.stars

@@ -15,6 +15,7 @@
     "axios-mock-adapter": "^1.15.0",
     "babel-plugin-import": "^1.7.0",
     "babel-polyfill": "^6.26.0",
+    "countup": "^1.8.2",
     "iview": "^2.13.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
