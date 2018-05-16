@@ -19,7 +19,7 @@
         </Form>
       </Col>
       <Col span="7">
-        <Button type="primary" :style="{float: 'right'}" @click="addRole = true">添加角色</Button>
+        <Button type="primary" :style="{float: 'right'}" @click="addRoleModal = true">添加角色</Button>
       </Col>
     </Row>
 
@@ -46,14 +46,11 @@
         <!-- <FormItem label="ID" prop="id">
           <Input v-model="formValidate.id" disabled></Input>
         </FormItem> -->
-        <FormItem label="昵称" prop="nickname">
-          <Input v-model="formValidate.nickname" placeholder="请输入昵称"></Input>
+        <FormItem label="标识" prop="identification">
+          <Input v-model="formValidate.identification" placeholder="请输入标识"></Input>
         </FormItem>
-        <FormItem label="账号" prop="account">
-          <Input v-model="formValidate.account" placeholder="请输入账号"></Input>
-        </FormItem>
-        <FormItem label="密码" prop="password">
-          <Input v-model="formValidate.password" placeholder="请输入密码"></Input>
+        <FormItem label="名称" prop="name">
+          <Input v-model="formValidate.name" placeholder="请输入名称"></Input>
         </FormItem>
         <FormItem label="权限" prop="auth">
           <Input v-model="formValidate.auth" disabled placeholder="请选择权限"></Input>
@@ -74,29 +71,26 @@
 
     <!-- 添加角色 -->
     <Modal
-      v-model="addRole"
-      title="角色修改"
+      v-model="addRoleModal"
+      title="添加角色"
       width="600"
       :mask-closable="false"
       :closable="false"
       class="footerHide"
       @on-ok="ok('formValidate')">
       <p slot="footer">
-        <Button type="primary">提交</Button>
-        <Button type="ghost" @click="addRole = false" style="margin-left: 8px">取消</Button>
+        <Button type="primary" @click="addRole('addForm')">提交</Button>
+        <Button type="ghost" @click="addRoleModal = false" style="margin-left: 8px">取消</Button>
       </p>
       <Form ref="addForm" :model="addForm" :rules="ruleValidate" :label-width="80">
         <!-- <FormItem label="ID" prop="id">
           <Input v-model="formValidate.id" disabled></Input>
         </FormItem> -->
-        <FormItem label="昵称" prop="nickname">
-          <Input v-model="addForm.nickname" placeholder="请输入昵称"></Input>
+        <FormItem label="标识" prop="identification">
+          <Input v-model="addForm.identification" placeholder="请输入标识"></Input>
         </FormItem>
-        <FormItem label="账号" prop="account">
-          <Input v-model="addForm.account" placeholder="请输入账号"></Input>
-        </FormItem>
-        <FormItem label="密码" prop="password">
-          <Input v-model="addForm.password" placeholder="请输入密码"></Input>
+        <FormItem label="名称" prop="name">
+          <Input v-model="addForm.name" placeholder="请输入名称"></Input>
         </FormItem>
         <FormItem label="权限" prop="auth">
           <Input v-model="addForm.auth" disabled placeholder="请选择权限"></Input>
@@ -124,36 +118,32 @@ export default {
         user: '',
         password: ''
       },
-      addRole: false,
+      addRoleModal: false,
+
       titles: ['未拥有权限', '已拥有权限'],
       data2: this.getMockData(),
       targetKeys2: this.getTargetKeys(),
       mod: false,
       formValidate: { // 弹出框数据
         id: '1',
-        nickname: 'hahaha',
-        account: 'admin',
-        password: '123456',
-        auth: '/userlist'
+        identification: 'hahaha',
+        name: 'admin',
+        auth: ['admin', 'userList']
       },
       addForm: { // 弹出框数据
-        nickname: '',
-        account: '',
-        password: '',
+        identification: '',
+        name: '',
         auth: ''
       },
       ruleValidate: {
-        nickname: [
-          { required: true, message: '请输入昵称', trigger: 'blur' }
+        identification: [
+          { required: true, message: '请输入标识', trigger: 'blur' }
         ],
-        account: [
-          { required: true, message: '请输入账户', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'change' }
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
         ],
         auth: [
-          { required: true, message: '请选择权限', trigger: 'change' }
+          { required: true, message: '请输入权限', trigger: 'change' }
         ]
       },
       columns7: [
@@ -164,26 +154,18 @@ export default {
         },
         {
           width: 100,
-          title: '序号',
-          key: 'No',
-          align: 'center',
-          render: (h, params) => {
-            return h('span', params.index + 1)
-          }
-        },
-        {
-          title: '昵称',
-          key: 'nickname',
+          title: 'ID',
+          key: 'id',
           align: 'center'
         },
         {
-          title: '账号',
-          key: 'account',
+          title: '标识',
+          key: 'identification',
           align: 'center'
         },
         {
-          title: '密码',
-          key: 'password',
+          title: '名称',
+          key: 'name',
           align: 'center'
         },
         {
@@ -191,11 +173,7 @@ export default {
           key: 'auth',
           align: 'center',
           render: (h, params) => {
-            return h('div', [
-              h('span', {
-
-              }, '权限55555')
-            ])
+            return h('div', this.authEach(h, params))
           }
         },
         {
@@ -246,50 +224,50 @@ export default {
       ],
       data6: [
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         },
         {
-          nickname: 'administrator',
-          account: 'admin',
-          password: '123456',
-          phone: '13648448972',
+          id: 1,
+          identification: 'administrator',
+          name: '管理员',
+          auth: ['admin', 'userList'],
           createTime: '2012-12-12',
           updateTime: '2012-12-12'
         }
@@ -335,6 +313,29 @@ export default {
     // 分页
     changePage (num) {
 
+    },
+    // 循环生成权限
+    authEach (h, params) {
+      let auth_ = []
+      params.row.auth.forEach(item => {
+        auth_.push(h('Tag', {
+          props: {
+            checkable: false,
+            color: 'green'
+          }
+        }, item))
+      }, this)
+      return auth_
+    },
+    // 添加角色
+    addRole (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+            this.$Message.success('Success!');
+        } else {
+            this.$Message.error('Fail!');
+        }
+      })
     }
   }
 }

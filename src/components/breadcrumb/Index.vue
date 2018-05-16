@@ -5,11 +5,7 @@
   </Breadcrumb>
 </template>
 <script>
-import { Breadcrumb, BreadcrumbItem } from 'iview'
 export default {
-  components: {
-    Breadcrumb, BreadcrumbItem
-  },
   data () {
     return {
       breadcrumbList: []

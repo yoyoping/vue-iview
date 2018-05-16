@@ -5,7 +5,6 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
-import { debounce } from '@/utils'
 
 const animationDuration = 6000
 
@@ -24,21 +23,15 @@ export default {
       default: '300px'
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
   },
-  mounted() {
+  mounted () {
     this.initChart()
-    this.__resizeHanlder = debounce(() => {
-      if (this.chart) {
-        this.chart.resize()
-      }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHanlder)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
       return
     }
@@ -47,7 +40,7 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart () {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({

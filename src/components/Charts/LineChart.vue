@@ -5,8 +5,6 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
-import utils from '_utils/app'
-
 export default {
   props: {
     className: {
@@ -29,27 +27,15 @@ export default {
       type: Object
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
   },
-  mounted() {
+  mounted () {
     this.initChart()
-    if (this.autoResize) {
-      this.__resizeHanlder = utils.debounce(() => {
-        if (this.chart) {
-          this.chart.resize()
-        }
-      }, 100)
-      // window.addEventListener('resize', this.__resizeHanlder)
-    }
-
-    // 监听侧边栏的变化
-    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    // sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
       return
     }
@@ -66,13 +52,13 @@ export default {
   watch: {
     chartData: {
       deep: true,
-      handler(val) {
+      handler (val) {
         this.setOptions(val)
       }
     }
   },
   methods: {
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions ({ expectedData, actualData } = {}) {
       this.chart.setOption({
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -104,7 +90,8 @@ export default {
           data: ['expected', 'actual']
         },
         series: [{
-          name: 'expected', itemStyle: {
+          name: 'expected',
+          itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -141,7 +128,7 @@ export default {
         }]
       })
     },
-    initChart() {
+    initChart () {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
     }

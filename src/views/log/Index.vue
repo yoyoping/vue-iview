@@ -14,6 +14,11 @@ export default {
     return {
       columns1: [
         {
+          type: 'selection',
+          width: 60,
+          align: 'center'
+        },
+        {
           title: '序号',
           key: 'No',
           align: 'center',
@@ -23,62 +28,91 @@ export default {
           }
         },
         {
-          title: '地址',
-          key: 'addr',
+          title: 'User',
+          key: 'user',
           align: 'center'
+        },
+        {
+          title: 'Method',
+          key: 'method',
+          align: 'center',
+          render: (h, params) => {
+            return h('Tag', {
+              props: {
+                color: 'blue'
+              }
+            }, params.row.method)
+          }
+        },
+        {
+          title: 'Path',
+          key: 'path',
+          align: 'center',
+          render: (h, params) => {
+            return h('Tag', {
+              props: {
+                color: 'green'
+              }
+            }, params.row.path)
+          }
+        },
+        {
+          title: 'IP',
+          key: 'path',
+          align: 'center',
+          render: (h, params) => {
+            return h('Tag', {
+            }, params.row.path)
+          }
         },
         {
           title: '时间',
           key: 'time',
           align: 'center'
         },
-        {
-          title: '操作人',
-          key: 'operator',
-          align: 'center'
-        },
-        {
-          title: '操作内容',
-          key: 'content',
-          align: 'center'
-        }
       ],
       data1: [
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         },
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         },
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         },
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         },
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         },
         {
-          addr: '成都SAC大厦',
-          time: '2018-12-12',
-          operator: '张三',
-          content: '修改用户权限'
+          user: 'admin',
+          method: 'post',
+          path: '/admin/user',
+          ip: '192.168.21.129',
+          time: '2018-12-12'
         }
       ]
     }

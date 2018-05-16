@@ -1,36 +1,151 @@
 <template>
   <div>
-    <Form ref="formInline" :model="formInline" inline>
-      <FormItem prop="user">
-        <Input type="text" v-model="formInline.user" placeholder="Username">
-          <Icon type="ios-person-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem prop="password">
-        <Input type="password" v-model="formInline.password" placeholder="Password">
-          <Icon type="ios-locked-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem>
-        <Button type="primary">查询</Button>
-      </FormItem>
-    </Form>
-    <Table :columns="columns8" :data="data7" size="small" ref="table"></Table>
-    <br>
-    <Button type="primary" size="large" @click="exportData(1)">
-      <Icon type="ios-download-outline"></Icon> Export source data
-    </Button>
-    <Button type="primary" size="large" @click="exportData(2)">
-      <Icon type="ios-download-outline"></Icon> Export sorting and filtered data
-    </Button>
-    <Button type="primary" size="large" @click="exportData(3)">
-      <Icon type="ios-download-outline"></Icon> Export custom data
-    </Button>
+    <Row>
+      <Col span="17">
+        <Form ref="formInline" :model="formInline" inline>
+          <FormItem prop="user">
+            <Input type="text" v-model="formInline.user" placeholder="Username">
+              <Icon type="ios-person-outline" slot="prepend"></Icon>
+            </Input>
+          </FormItem>
+          <FormItem prop="password">
+            <Input type="password" v-model="formInline.password" placeholder="Password">
+              <Icon type="ios-locked-outline" slot="prepend"></Icon>
+            </Input>
+          </FormItem>
+          <FormItem>
+            <Button type="primary">查询</Button>
+          </FormItem>
+        </Form>
+      </Col>
+      <Col span="7">
+        <Button type="primary" :style="{float: 'right'}" @click="addRoleModal = true">添加账号</Button>
+      </Col>
+    </Row>
+
+    <Table border :columns="columns7" :data="data6"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
         <Page :total="100" :current="1" @on-change="changePage"></Page>
       </div>
     </div>
+    <!-- 修改账号的对话框 -->
+    <Modal
+      v-model="mod"
+      title="账号修改"
+      width="600"
+      :mask-closable="false"
+      :closable="false"
+      class="footerHide"
+      @on-ok="ok('formValidate')">
+      <p slot="footer">
+        <Button type="primary" @click="handleSubmit('formValidate')">提交</Button>
+        <Button type="ghost" @click="mod = false" style="margin-left: 8px">取消</Button>
+      </p>
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+        <!-- <FormItem label="ID" prop="id">
+          <Input v-model="formValidate.id" disabled></Input>
+        </FormItem> -->
+        <FormItem label="用户名" prop="username">
+          <Input v-model="formValidate.username" placeholder="请输入用户名"></Input>
+        </FormItem>
+        <FormItem label="名称" prop="name">
+          <Input v-model="formValidate.name" placeholder="请输入名称"></Input>
+        </FormItem>
+        <FormItem label="头像" prop="avatar">
+          <Upload
+            ref="upload"
+            :on-success="handleSuccess"
+            :format="['jpg','jpeg','png']"
+            :max-size="2048"
+            :on-format-error="handleFormatError"
+            :on-exceeded-size="handleMaxSize"
+            :before-upload="handleBeforeUpload"
+            multiple
+            type="drag"
+            action="//jsonplaceholder.typicode.com/posts/"
+            style="display: inline-block;width:58px;">
+            <div style="width: 58px;height:58px;line-height: 58px;"  v-if="!formValidate.avatar">
+                <Icon type="camera" size="20"></Icon>
+            </div>
+            <img :src="formValidate.avatar" v-else alt="">
+          </Upload>
+        </FormItem>
+        <FormItem label="角色" prop="role">
+          <Input v-model="formValidate.role" disabled placeholder="请选择角色"></Input>
+        </FormItem>
+        <FormItem label="" prop="">
+          <Transfer
+            class="Transfer"
+            :titles="titles"
+            :data="data2"
+            :target-keys="targetKeys2"
+            filterable
+            :filter-method="filterMethod"
+            @on-change="handleChange2">
+          </Transfer>
+        </FormItem>
+      </Form>
+    </Modal>
+
+    <!-- 添加账号 -->
+    <Modal
+      v-model="addRoleModal"
+      title="添加账号"
+      width="600"
+      :mask-closable="false"
+      :closable="false"
+      class="footerHide"
+      @on-ok="ok('formValidate')">
+      <p slot="footer">
+        <Button type="primary" @click="addUser('addForm')">提交</Button>
+        <Button type="ghost" @click="addRoleModal = false" style="margin-left: 8px">取消</Button>
+      </p>
+      <Form ref="addForm" :model="addForm" :rules="ruleValidate" :label-width="80">
+        <!-- <FormItem label="ID" prop="id">
+          <Input v-model="formValidate.id" disabled></Input>
+        </FormItem> -->
+        <FormItem label="用户名" prop="username">
+          <Input v-model="addForm.username" placeholder="请输入用户名"></Input>
+        </FormItem>
+        <FormItem label="名称" prop="name">
+          <Input v-model="addForm.name" placeholder="请输入名称"></Input>
+        </FormItem>
+        <FormItem label="头像" prop="avatar">
+          <Upload
+            ref="upload"
+            :on-success="handleSuccess"
+            :format="['jpg','jpeg','png']"
+            :max-size="2048"
+            :on-format-error="handleFormatError"
+            :on-exceeded-size="handleMaxSize"
+            :before-upload="handleBeforeUpload"
+            multiple
+            type="drag"
+            action="//jsonplaceholder.typicode.com/posts/"
+            style="display: inline-block;width:58px;">
+            <div style="width: 58px;height:58px;line-height: 58px;"  v-if="!addForm.avatar">
+                <Icon type="camera" size="20"></Icon>
+            </div>
+            <img :src="addForm.avatar" v-else alt="">
+          </Upload>
+        </FormItem>
+        <FormItem label="角色" prop="role">
+          <Input v-model="formValidate.role" disabled placeholder="请选择角色"></Input>
+        </FormItem>
+        <FormItem label="" prop="">
+          <Transfer
+            class="Transfer"
+            :titles="titles"
+            :data="data2"
+            :target-keys="targetKeys2"
+            filterable
+            :filter-method="filterMethod"
+            @on-change="handleChange2">
+          </Transfer>
+        </FormItem>
+      </Form>
+    </Modal>
   </div>
 </template>
 <script>
@@ -41,274 +156,226 @@ export default {
         user: '',
         password: ''
       },
-      columns8: [
+      addRoleModal: false,
+
+      titles: ['未拥有权限', '已拥有权限'],
+      data2: this.getMockData(),
+      targetKeys2: this.getTargetKeys(),
+      mod: false,
+      formValidate: { // 弹出框数据
+        id: '1',
+        username: 'admin',
+        name: '管理员',
+        avatar: '',
+        role: ['admin', 'userList']
+      },
+      addForm: { // 弹出框数据
+        username: '',
+        name: '',
+        avatar: '',
+        role: []
+      },
+      ruleValidate: {
+        username: [
+          { required: true, message: '请输入标识', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        avatar: [
+          { required: true, message: '请上传头像', trigger: 'change' }
+        ],
+        role: [
+          { required: true, message: '请输入权限', trigger: 'change' }
+        ]
+      },
+      columns7: [
         {
-          'title': 'Name',
-          'key': 'name',
-          'fixed': 'left',
-          'width': 200
+          type: 'selection',
+          width: 60,
+          align: 'center'
         },
         {
-          'title': 'Show',
-          'key': 'show',
-          'width': 150,
-          'sortable': true,
-          filters: [
-            {
-              label: 'Greater than 4000',
-              value: 1
-            },
-            {
-              label: 'Less than 4000',
-              value: 2
-            }
-          ],
-          filterMultiple: false,
-          filterMethod (value, row) {
-            if (value === 1) {
-              return row.show > 4000
-            } else if (value === 2) {
-              return row.show < 4000
-            }
+          width: 100,
+          title: 'ID',
+          key: 'id',
+          align: 'center'
+        },
+        {
+          title: '用户名',
+          key: 'username',
+          align: 'center'
+        },
+        {
+          title: '名称',
+          key: 'name',
+          align: 'center'
+        },
+        {
+          title: '角色',
+          key: 'role',
+          align: 'center',
+          render: (h, params) => {
+            return h('Tag', {
+              props: {
+                color: 'blue'
+              }
+            }, params.row.role)
           }
         },
         {
-          'title': 'Weak',
-          'key': 'weak',
-          'width': 150,
-          'sortable': true
+          title: '创建时间',
+          key: 'createTime',
+          align: 'center'
         },
         {
-          'title': 'Signin',
-          'key': 'signin',
-          'width': 150,
-          'sortable': true
+          title: '更新时间',
+          key: 'updateTime',
+          align: 'center'
         },
         {
-          'title': 'Click',
-          'key': 'click',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': 'Active',
-          'key': 'active',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': '7, retained',
-          'key': 'day7',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': '30, retained',
-          'key': 'day30',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': 'The next day left',
-          'key': 'tomorrow',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': 'Day Active',
-          'key': 'day',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': 'Week Active',
-          'key': 'week',
-          'width': 150,
-          'sortable': true
-        },
-        {
-          'title': 'Month Active',
-          'key': 'month',
-          'width': 150,
-          'sortable': true
+          title: '操作',
+          key: 'action',
+          width: 150,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.show(params.index)
+                  }
+                }
+              }, '编辑'),
+              h('Button', {
+                props: {
+                  type: 'error',
+                  size: 'small'
+                },
+                on: {
+                  click: () => {
+                    this.remove(params.index)
+                  }
+                }
+              }, '删除')
+            ])
+          }
         }
       ],
-      data7: [{
-        'name': 'Name1',
-        'fav': 0,
-        'show': 7302,
-        'weak': 5627,
-        'signin': 1563,
-        'click': 4254,
-        'active': 1438,
-        'day7': 274,
-        'day30': 285,
-        'tomorrow': 1727,
-        'day': 558,
-        'week': 4440,
-        'month': 5610
-      },
-      {
-        'name': 'Name2',
-        'fav': 0,
-        'show': 4720,
-        'weak': 4086,
-        'signin': 3792,
-        'click': 8690,
-        'active': 8470,
-        'day7': 8172,
-        'day30': 5197,
-        'tomorrow': 1684,
-        'day': 2593,
-        'week': 2507,
-        'month': 1537
-      },
-      {
-        'name': 'Name3',
-        'fav': 0,
-        'show': 7181,
-        'weak': 8007,
-        'signin': 8477,
-        'click': 1879,
-        'active': 16,
-        'day7': 2249,
-        'day30': 3450,
-        'tomorrow': 377,
-        'day': 1561,
-        'week': 3219,
-        'month': 1588
-      },
-      {
-        'name': 'Name4',
-        'fav': 0,
-        'show': 9911,
-        'weak': 8976,
-        'signin': 8807,
-        'click': 8050,
-        'active': 7668,
-        'day7': 1547,
-        'day30': 2357,
-        'tomorrow': 7278,
-        'day': 5309,
-        'week': 1655,
-        'month': 9043
-      },
-      {
-        'name': 'Name5',
-        'fav': 0,
-        'show': 934,
-        'weak': 1394,
-        'signin': 6463,
-        'click': 5278,
-        'active': 9256,
-        'day7': 209,
-        'day30': 3563,
-        'tomorrow': 8285,
-        'day': 1230,
-        'week': 4840,
-        'month': 9908
-      },
-      {
-        'name': 'Name6',
-        'fav': 0,
-        'show': 6856,
-        'weak': 1608,
-        'signin': 457,
-        'click': 4949,
-        'active': 2909,
-        'day7': 4525,
-        'day30': 6171,
-        'tomorrow': 1920,
-        'day': 1966,
-        'week': 904,
-        'month': 6851
-      },
-      {
-        'name': 'Name7',
-        'fav': 0,
-        'show': 5107,
-        'weak': 6407,
-        'signin': 4166,
-        'click': 7970,
-        'active': 1002,
-        'day7': 8701,
-        'day30': 9040,
-        'tomorrow': 7632,
-        'day': 4061,
-        'week': 4359,
-        'month': 3676
-      },
-      {
-        'name': 'Name8',
-        'fav': 0,
-        'show': 862,
-        'weak': 6520,
-        'signin': 6696,
-        'click': 3209,
-        'active': 6801,
-        'day7': 6364,
-        'day30': 6850,
-        'tomorrow': 9408,
-        'day': 2481,
-        'week': 1479,
-        'month': 2346
-      },
-      {
-        'name': 'Name9',
-        'fav': 0,
-        'show': 567,
-        'weak': 5859,
-        'signin': 128,
-        'click': 6593,
-        'active': 1971,
-        'day7': 7596,
-        'day30': 3546,
-        'tomorrow': 6641,
-        'day': 1611,
-        'week': 5534,
-        'month': 3190
-      },
-      {
-        'name': 'Name10',
-        'fav': 0,
-        'show': 3651,
-        'weak': 1819,
-        'signin': 4595,
-        'click': 7499,
-        'active': 7405,
-        'day7': 8710,
-        'day30': 5518,
-        'tomorrow': 428,
-        'day': 9768,
-        'week': 2864,
-        'month': 5811
-      }
+      data6: [
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        },
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        },
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        },
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        },
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        },
+        {
+          id: 1,
+          username: 'admin',
+          name: '管理员',
+          role: 'admin',
+          createTime: '2012-12-12',
+          updateTime: '2012-12-12'
+        }
       ]
     }
   },
   methods: {
-    exportData (type) {
-      if (type === 1) {
-        this.$refs.table.exportCsv({
-          filename: 'The original data'
-        })
-      } else if (type === 2) {
-        this.$refs.table.exportCsv({
-          filename: 'Sorting and filtering data',
-          original: false
-        })
-      } else if (type === 3) {
-        this.$refs.table.exportCsv({
-          filename: 'Custom data',
-          columns: this.columns8.filter((col, index) => index < 4),
-          data: this.data7.filter((data, index) => index < 4)
+    show (index) {
+      this.mod = !this.mod
+    },
+    remove (index) {
+      this.data6.splice(index, 1)
+    },
+    getMockData () {
+      let mockData = []
+      for (let i = 1; i <= 20; i++) {
+        mockData.push({
+          key: i.toString(),
+          label: 'Content ' + i,
+          description: 'The desc of content  ' + i,
+          disabled: Math.random() * 3 < 1
         })
       }
+      return mockData
+    },
+    getTargetKeys () {
+      return this.getMockData().filter(() => Math.random() * 2 > 1).map(item => item.key)
+    },
+    handleChange2 (newTargetKeys) {
+      this.targetKeys2 = newTargetKeys
+    },
+    filterMethod (data, query) {
+      return data.label.indexOf(query) > -1
+    },
+    handleSubmit (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$Message.success('修改成功!')
+          this.mod = false
+        }
+      })
     },
     // 分页
     changePage (num) {
 
+    },
+    // 添加账号
+    addUser (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+            this.$Message.success('Success!');
+        } else {
+            this.$Message.error('Fail!');
+        }
+      })
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+.Transfer{
+  margin-bottom: 30px;
+}
+</style>
