@@ -34,7 +34,7 @@
           </Row>
         </Header>
         <Tags></Tags>
-        <Content :style="{margin: '20px', minHeight: '260px'}">
+        <Content>
           <keep-alive v-if="isKeep">
             <router-view></router-view>
           </keep-alive>
@@ -207,5 +207,11 @@ export default {
   }
   .ivu-dropdown{
     margin-left: 20px;
+  }
+  .ivu-layout-content{
+    margin: 20px;
+    min-height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>

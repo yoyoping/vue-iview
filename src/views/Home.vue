@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row>
+    <Row :gutter="20">
       <Col span="8">
       <Card>
         <Row type="flex" class="user-infor">
@@ -33,34 +33,90 @@
         </Row>
       </Card>
       </Col>
-      <Col span="14">
-      <Row :gutter="5">
-        <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
-        <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="android-person-add" color="#2d8cf0" intro-text="今日新增用户"></infor-card>
-        </Col>
-        <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
-        <infor-card id-name="visit_count" :end-val="count.visit" iconType="ios-eye" color="#64d572" :iconSize="50" intro-text="今日浏览量"></infor-card>
-        </Col>
-        <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
-        <infor-card id-name="collection_count" :end-val="count.collection" iconType="upload" color="#ffd572" intro-text="今日数据采集量"></infor-card>
-        </Col>
-        <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
-        <infor-card id-name="transfer_count" :end-val="count.transfer" iconType="shuffle" color="#f25e43" intro-text="今日服务调用量"></infor-card>
-        </Col>
-      </Row>
+      <Col span="16">
+        <Row :gutter="16" type="flex" justify="space-around">
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="android-person-add" color="#2d8cf0" intro-text="今日新增用户"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="visit_count" :end-val="count.createUser" iconType="ios-eye" color="#64d572" :iconSize="50" intro-text="今日浏览量"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="collection_count" :end-val="count.collection" iconType="upload" color="#ffd572" intro-text="今日数据采集量"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="transfer_count" :end-val="count.transfer" iconType="shuffle" color="#f25e43" intro-text="今日服务调用量"></infor-card>
+          </Col>
+        </Row>
+        <Row :gutter="16" type="flex" justify="space-around" class="twoRow">
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="transfer_count1" :end-val="count.transfer" iconType="shuffle" color="#f25e43" intro-text="今日服务调用量"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="collection_count1" :end-val="count.collection" iconType="upload" color="#ffd572" intro-text="今日数据采集量"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="visit_count1" :end-val="count.createUser" iconType="ios-eye" color="#64d572" :iconSize="50" intro-text="今日浏览量"></infor-card>
+          </Col>
+          <Col :xs="24" :sm="12" :md="6">
+            <infor-card id-name="user_created_count1" :end-val="count.createUser" iconType="android-person-add" color="#2d8cf0" intro-text="今日新增用户"></infor-card>
+          </Col>
+        </Row>
       </Col>
     </Row>
-
+    <Card shadow  class="mt" id="lineChart">
+      <line-chart :chart-data="lineChartData"></line-chart>
+    </Card>
+    <Row class="mt" :gutter="20">
+      <Col span="8">
+        <Card>
+          <raddar-chart></raddar-chart>
+        </Card>
+      </Col>
+      <Col span="8">
+        <Card>
+          <pie-chart></pie-chart>
+        </Card>
+      </Col>
+      <Col span="8">
+        <Card>
+          <bar-chart></bar-chart>
+        </Card>
+      </Col>
+    </Row>
   </div>
 </template>
 <script>
 import inforCard from '_components/inforCard'
+import LineChart from '_components/Charts/LineChart.vue'
+import RaddarChart from '_components/Charts/RaddarChart.vue'
+import PieChart from '_components/Charts/PieChart.vue'
+import BarChart from '_components/Charts/BarChart.vue'
+const lineChartData = {
+  newVisitis: {
+    expectedData: [100, 120, 161, 134, 105, 160, 165],
+    actualData: [120, 82, 91, 154, 162, 140, 145]
+  },
+  messages: {
+    expectedData: [200, 192, 120, 144, 160, 130, 140],
+    actualData: [180, 160, 151, 106, 145, 150, 130]
+  },
+  purchases: {
+    expectedData: [80, 100, 121, 104, 105, 90, 100],
+    actualData: [120, 90, 100, 138, 142, 130, 130]
+  },
+  shoppings: {
+    expectedData: [130, 140, 141, 142, 145, 150, 160],
+    actualData: [120, 82, 91, 154, 162, 140, 130]
+  }
+}
 export default {
   components: {
-    inforCard
+    inforCard, LineChart, RaddarChart, PieChart, BarChart
   },
   data () {
     return {
+      lineChartData: lineChartData.newVisitis,
       list: [],
       count: {
         createUser: 496,
@@ -151,5 +207,10 @@ export default {
   .margin-top-8 {
     margin-top: 8px;
   }
-
+  .twoRow{
+    margin-top: 25px;
+  }
+  .mt{
+    margin-top: 30px;
+  }
 </style>
