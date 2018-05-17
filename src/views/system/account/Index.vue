@@ -55,6 +55,7 @@
         <FormItem label="头像" prop="avatar">
           <Upload
             ref="upload"
+            :show-upload-list="false"
             :on-success="handleSuccess"
             :format="['jpg','jpeg','png']"
             :max-size="2048"
@@ -64,10 +65,9 @@
             type="drag"
             action="//jsonplaceholder.typicode.com/posts/"
             style="display: inline-block;width:58px;">
-            <div style="width: 58px;height:58px;line-height: 58px;"  v-if="!formValidate.avatar">
+            <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="camera" size="20"></Icon>
             </div>
-            <img :src="formValidate.avatar" v-else alt="" style="width: 58px;height:58px;line-height: 58px;">
           </Upload>
         </FormItem>
         <FormItem label="角色" prop="role">
@@ -113,6 +113,7 @@
         <FormItem label="头像" prop="avatar">
           <Upload
             ref="upload"
+            :show-upload-list="false"
             :on-success="handleSuccess"
             :format="['jpg','jpeg','png']"
             :max-size="2048"
@@ -122,10 +123,9 @@
             type="drag"
             action="//jsonplaceholder.typicode.com/posts/"
             style="display: inline-block;width:58px;">
-            <div style="width: 58px;height:58px;line-height: 58px;"  v-if="!addForm.avatar">
+            <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="camera" size="20"></Icon>
             </div>
-            <img :src="addForm.avatar" v-else alt="">
           </Upload>
         </FormItem>
         <FormItem label="角色" prop="role">

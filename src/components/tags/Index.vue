@@ -21,8 +21,8 @@
           <Icon type="arrow-down-b"></Icon>
         </a>
         <DropdownMenu slot="list">
-          <DropdownItem name="other">关闭其他</DropdownItem>
           <DropdownItem name="all">关闭所有</DropdownItem>
+          <DropdownItem name="other">关闭其他</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
@@ -50,11 +50,21 @@ export default {
     },
     select (name) {
       if (name === 'other') {
+        let current = {
+          title: '',
+          url: '',
+          name: ''
+        }
         this.tags.forEach(item => {
           if (item.name === this.$route.name) {
-
+            current.title = item.title
+            current.url = item.url
+            current.name = item.name
           }
-        });
+        })
+        this.tags.splice(1, this.tags.length)
+        this.tags.push(current)
+        this.$store.commit('TAGS', JSON.stringify(this.tags))
       } else if (name === 'all') {
         this.tags.splice(1, this.tags.length)
         this.$store.commit('TAGS', JSON.stringify(this.tags))

@@ -31,12 +31,17 @@ router.beforeEach((to, from, next) => {
         tags.push(tagsitem)
       } else {
         tags.forEach(item => {
-          if (to.meta.title === item.title) {
+          if (to.name === item.name) {
             flagPush = false
           }
         })
         if (flagPush) {
-          tags.push(tagsitem)
+          if (tagsitem.name !== 'login') {
+            if (tags.length >= 10) {
+              tags.splice(1, 1)
+            }
+            tags.push(tagsitem)
+          }
         }
       }
       router.app.$store.commit('TAGS', JSON.stringify(tags))
