@@ -60,7 +60,6 @@
             :max-size="2048"
             :on-format-error="handleFormatError"
             :on-exceeded-size="handleMaxSize"
-            :before-upload="handleBeforeUpload"
             multiple
             type="drag"
             action="//jsonplaceholder.typicode.com/posts/"
@@ -68,7 +67,7 @@
             <div style="width: 58px;height:58px;line-height: 58px;"  v-if="!formValidate.avatar">
                 <Icon type="camera" size="20"></Icon>
             </div>
-            <img :src="formValidate.avatar" v-else alt="">
+            <img :src="formValidate.avatar" v-else alt="" style="width: 58px;height:58px;line-height: 58px;">
           </Upload>
         </FormItem>
         <FormItem label="角色" prop="role">
@@ -119,7 +118,6 @@
             :max-size="2048"
             :on-format-error="handleFormatError"
             :on-exceeded-size="handleMaxSize"
-            :before-upload="handleBeforeUpload"
             multiple
             type="drag"
             action="//jsonplaceholder.typicode.com/posts/"
@@ -365,11 +363,24 @@ export default {
     addUser (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-            this.$Message.success('Success!');
+          this.$Message.success('Success!')
         } else {
-            this.$Message.error('Fail!');
+          this.$Message.error('Fail!')
         }
       })
+    },
+    // 上传成功
+    handleSuccess (res, file, fileList) {
+      console.log(`${res}--${file}--${fileList}`)
+      debugger
+    },
+    // 上传失败
+    handleFormatError () {
+
+    },
+    // 上传文件超出大小
+    handleMaxSize () {
+      this.$Message.error('文件超出最大限制')
     }
   }
 }

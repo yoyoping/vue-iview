@@ -136,7 +136,7 @@ export default new Router({
       ]
     },
     {
-      path: 'eva',
+      path: '/eva',
       name: '',
       component: _import_('Layout'),
       redirect: '/eva',

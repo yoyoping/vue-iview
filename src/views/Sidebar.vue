@@ -63,9 +63,9 @@
       <span>操作日志</span>
       </MenuItem>
     </router-link>
-    <!-- <Submenu name="system">
+    <Submenu name="component">
       <template slot="title">
-        <i class="iconfont icon-xitongguanli"></i>
+        <i class="iconfont icon-tianjiazujian"></i>
         组件管理
       </template>
       <router-link to="/component/editor">
@@ -76,7 +76,7 @@
         <MenuItem name="upload">
         <i class="iconfont icon-erji-quanxianguanli"></i>文件上传</MenuItem>
       </router-link>
-    </Submenu> -->
+    </Submenu>
   </Menu>
   <div class="shrink_" v-else>
     <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >

@@ -69,7 +69,7 @@ export default {
           title: '时间',
           key: 'time',
           align: 'center'
-        },
+        }
       ],
       data1: [
         {

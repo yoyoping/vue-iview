@@ -91,7 +91,7 @@ export default {
         phone: 13564554674,
         jobLevel: '1',
         entryYear: '1',
-        deal: '10',
+        deal: 10,
         dealCcycle: '30',
         deal30: '10',
         state: '1'

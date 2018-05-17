@@ -40,11 +40,11 @@ export default {
       return
     }
     if (this.autoResize) {
-      window.removeEventListener('resize', this.__resizeHanlder)
+      // window.removeEventListener('resize', this.__resizeHanlder)
     }
 
-    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+    // const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    // sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
 
     this.chart.dispose()
     this.chart = null

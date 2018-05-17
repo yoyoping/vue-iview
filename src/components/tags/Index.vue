@@ -50,9 +50,13 @@ export default {
     },
     select (name) {
       if (name === 'other') {
+        this.tags.forEach(item => {
+          if (item.name === this.$route.name) {
 
+          }
+        });
       } else if (name === 'all') {
-        this.tags.splice(1,this.tags.length)
+        this.tags.splice(1, this.tags.length)
         this.$store.commit('TAGS', JSON.stringify(this.tags))
         this.$router.push({path: '/', query: { isKeep: true }})
       }

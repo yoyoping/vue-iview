@@ -3,7 +3,7 @@
     <Row>
       <Col span="5">
       <Card style="width:350px" shadow>
-        <Upload multiple type="drag" action="//jsonplaceholder.typicode.com/posts/">
+        <Upload multiple type="drag" action="//jsonplaceholder.typicode.com/posts/" name="image">
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
             <p>Click or drag files here to upload</p>
@@ -25,7 +25,7 @@
             <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
           </template>
         </div>
-        <Upload ref="upload" :show-upload-list="false" :default-file-list="defaultList" :on-success="handleSuccess" :format="['jpg','jpeg','png']"
+        <Upload ref="upload" :show-upload-list="false" :default-file-list="defaultList" name="image" :on-success="handleSuccess" :format="['jpg','jpeg','png']"
           :max-size="2048" :on-format-error="handleFormatError" :on-exceeded-size="handleMaxSize" :before-upload="handleBeforeUpload"
           multiple type="drag" action="//jsonplaceholder.typicode.com/posts/" style="display: inline-block;width:58px;">
           <div style="width: 58px;height:58px;line-height: 58px;">
