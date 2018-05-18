@@ -3,13 +3,13 @@
     <Row>
       <Col span="17">
         <Form ref="formInline" :model="formInline" inline>
-          <FormItem prop="user">
-            <Input type="text" v-model="formInline.user" placeholder="Username">
+          <FormItem prop="username">
+            <Input type="text" v-model="formInline.username" placeholder="Username">
               <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
-          <FormItem prop="password">
-            <Input type="password" v-model="formInline.password" placeholder="Password">
+          <FormItem prop="phone">
+            <Input type="text" v-model="formInline.phone" placeholder="phone">
               <Icon type="ios-locked-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
@@ -22,7 +22,6 @@
         <Button type="primary" :style="{float: 'right'}" @click="addRoleModal = true">添加角色</Button>
       </Col>
     </Row>
-
     <Table border :columns="columns7" :data="data6"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
@@ -115,8 +114,8 @@ export default {
   data () {
     return {
       formInline: {
-        user: '',
-        password: ''
+        username: '',
+        phone: ''
       },
       addRoleModal: false,
 

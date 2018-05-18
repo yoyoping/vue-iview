@@ -84,6 +84,15 @@ export default new Router({
             title: '敏感词汇',
             role: 'admin'
           }
+        },
+        {
+          path: 'log',
+          name: 'log',
+          component: _import_('system/log/Index'),
+          meta: {
+            title: '操作日志',
+            role: 'admin'
+          }
         }
       ]
     },
@@ -180,23 +189,6 @@ export default new Router({
           component: _import_('errorCount/Index'),
           meta: {
             title: '报错统计',
-            role: 'admin'
-          }
-        }
-      ]
-    },
-    {
-      path: 'log',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/log',
-      children: [
-        {
-          path: '/log',
-          name: 'log',
-          component: _import_('log/Index'),
-          meta: {
-            title: '操作日志',
             role: 'admin'
           }
         }

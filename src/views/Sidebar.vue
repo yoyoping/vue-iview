@@ -22,9 +22,13 @@
         <MenuItem name="menu">
         <i class="iconfont icon-caidan"></i>菜单管理</MenuItem>
       </router-link>
-      <router-link to="/system/sensitive">
+      <!-- <router-link to="/system/sensitive">
         <MenuItem name="sensitive">
         <i class="iconfont icon-caidan"></i>敏感词汇</MenuItem>
+      </router-link> -->
+      <router-link to="/system/log">
+        <MenuItem name="sensitive">
+        <i class="iconfont icon-caozuorizhi"></i>操作日志</MenuItem>
       </router-link>
     </Submenu>
     <router-link to="/userList">
@@ -45,22 +49,16 @@
       <span>评价管理</span>
       </MenuItem>
     </router-link>
-    <router-link to="/complaints">
+    <!-- <router-link to="/complaints">
       <MenuItem name="complaints">
       <i class="iconfont icon-pingjia"></i>
       <span>投诉管理</span>
       </MenuItem>
-    </router-link>
+    </router-link> -->
     <router-link to="/errorCount">
       <MenuItem name="errorCount">
-      <i class="iconfont icon-caozuorizhi"></i>
+      <i class="iconfont icon-report"></i>
       <span>报错统计</span>
-      </MenuItem>
-    </router-link>
-    <router-link to="/log">
-      <MenuItem name="log">
-      <i class="iconfont icon-caozuorizhi"></i>
-      <span>操作日志</span>
       </MenuItem>
     </router-link>
     <Submenu name="component">
@@ -70,19 +68,19 @@
       </template>
       <router-link to="/component/editor">
         <MenuItem name="editor">
-        <i class="iconfont icon-erji-quanxianguanli"></i>富文本</MenuItem>
+        <i class="iconfont icon-fuwenbenkuang"></i>富文本</MenuItem>
       </router-link>
       <router-link to="/component/upload">
         <MenuItem name="upload">
-        <i class="iconfont icon-erji-quanxianguanli"></i>文件上传</MenuItem>
+        <i class="iconfont icon-wenjianshangchuan"></i>文件上传</MenuItem>
       </router-link>
       <router-link to="/component/drag">
         <MenuItem name="drag">
-        <i class="iconfont icon-erji-quanxianguanli"></i>拖拽排序</MenuItem>
+        <i class="iconfont icon-paixu-jiangxu"></i>拖拽排序</MenuItem>
       </router-link>
       <router-link to="/component/cityLink">
         <MenuItem name="cityLink">
-        <i class="iconfont icon-erji-quanxianguanli"></i>城市联动</MenuItem>
+        <i class="iconfont icon-liandongcelve"></i>城市联动</MenuItem>
       </router-link>
     </Submenu>
   </Menu>
@@ -97,7 +95,8 @@
         <DropdownItem name="role"><i class="iconfont icon-jiaoseguanli"></i>角色管理</DropdownItem>
         <DropdownItem name="auth"><i class="iconfont icon-erji-quanxianguanli"></i>权限管理</DropdownItem>
         <DropdownItem name="menu"><i class="iconfont icon-caidan"></i>菜单管理</DropdownItem>
-        <DropdownItem name="sensitive"><i class="iconfont icon-caidan"></i>敏感词汇</DropdownItem>
+        <!-- <DropdownItem name="sensitive"><i class="iconfont icon-caidan"></i>敏感词汇</DropdownItem> -->
+        <DropdownItem name="log"><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
       </DropdownMenu>
     </Dropdown>
     <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
@@ -124,39 +123,31 @@
         <DropdownItem name="eva"><i class="iconfont icon-pingjia"></i>评价管理</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
+    <!-- <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
         <i class="iconfont icon-pingjia"></i>
       </a>
       <DropdownMenu slot="list" >
         <DropdownItem name="complaints"><i class="iconfont icon-pingjia"></i>投诉管理</DropdownItem>
       </DropdownMenu>
-    </Dropdown>
+    </Dropdown> -->
     <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
-        <i class="iconfont icon-pingjia"></i>
+        <i class="iconfont icon-report"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem name="errorCount"><i class="iconfont icon-pingjia"></i>报错统计</DropdownItem>
+        <DropdownItem name="errorCount"><i class="iconfont icon-report"></i>报错统计</DropdownItem>
       </DropdownMenu>
     </Dropdown>
     <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
       <a href="javascript:void(0)">
-        <i class="iconfont icon-caozuorizhi"></i>
+        <i class="iconfont icon-tianjiazujian"></i>
       </a>
       <DropdownMenu slot="list" >
-        <DropdownItem name="log"><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
-      <a href="javascript:void(0)">
-        <i class="iconfont icon-xitongguanli"></i>
-      </a>
-      <DropdownMenu slot="list" >
-        <DropdownItem name="editor"><i class="iconfont icon-weibiaoti5"></i>富文本</DropdownItem>
-        <DropdownItem name="upload"><i class="iconfont icon-jiaoseguanli"></i>文件上传</DropdownItem>
-        <DropdownItem name="drag"><i class="iconfont icon-erji-quanxianguanli"></i>拖拽排序</DropdownItem>
-        <DropdownItem name="cityLink"><i class="iconfont icon-caidan"></i>城市联动</DropdownItem>
+        <DropdownItem name="editor"><i class="iconfont icon-fuwenbenkuang"></i>富文本</DropdownItem>
+        <DropdownItem name="upload"><i class="iconfont icon-wenjianshangchuan"></i>文件上传</DropdownItem>
+        <DropdownItem name="drag"><i class="iconfont icon-paixu-jiangxu"></i>拖拽排序</DropdownItem>
+        <DropdownItem name="cityLink"><i class="iconfont icon-liandongcelve"></i>城市联动</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>
