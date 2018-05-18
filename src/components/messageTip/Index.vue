@@ -9,18 +9,15 @@
 </template>
 
 <script>
-import util from '_utils/app.js'
 export default {
   name: 'messageTip',
-  props: {
-    value: {
-      type: Number,
-      default: 0
+  data () {
+    return {
+      value: 3
     }
   },
   methods: {
     showMessage () {
-      util.openNewPage(this, 'message_index')
       // this.$router.push({
       //   name: 'message_index'
       // })
@@ -28,3 +25,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.ivu-badge{
+  cursor: pointer;
+}
+</style>

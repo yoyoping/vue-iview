@@ -37,98 +37,97 @@
   <!-- </el-col> -->
 </template>
 <script>
-  import provinceList1 from '_utils/city'
-  export default {
-    props: ['isArea', 'datav'],
-    data () {
-      return {
-        province: '',
-        city: '',
-        area: '',
-        citydisabled: true, // 默认城市禁止选择
-        areadisabled: true, // 默认区域禁止选择
-        isArea2: true, // 区域是否显示
-        provinceList: provinceList1,
-        cityList: [], // 城市列表
-        areaList: [], // 区域列表
-        name: [] // 名字
+import provinceList1 from '@utils/city'
+export default {
+  props: ['isArea', 'datav'],
+  data () {
+    return {
+      province: '',
+      city: '',
+      area: '',
+      citydisabled: true, // 默认城市禁止选择
+      areadisabled: true, // 默认区域禁止选择
+      isArea2: true, // 区域是否显示
+      provinceList: provinceList1,
+      cityList: [], // 城市列表
+      areaList: [], // 区域列表
+      name: [] // 名字
+    }
+  },
+  methods: {
+    province_ (val) {
+      this.provinceList.forEach((res, index) => {
+        if (res.id === val) {
+          this.cityList = this.provinceList[index].children
+          this.name[0] = this.provinceList[index].name
+          this.name[1] = undefined
+          this.name[2] = undefined
+          if (this.provinceList[index].municipality) {
+            this.isArea2 = false
+          } else {
+            this.isArea2 = true
+          }
+        }
+      }, this)
+      this.city = ''
+      this.area = ''
+      this.citydisabled = false
+      this.areadisabled = true
+      if (this.datav === '1') {
+        this.$emit('myAddr', this.name, '1')
+      } else {
+        this.$emit('myAddr', this.name, '2')
       }
     },
-    methods: {
-      province_ (val) {
-        this.provinceList.forEach((res, index) => {
-          if (res.id === val) {
-            this.cityList = this.provinceList[index].children
-            this.name[0] = this.provinceList[index].name
-            this.name[1] = undefined
-            this.name[2] = undefined
-            if (this.provinceList[index].municipality) {
-              this.isArea2 = false
-            } else {
-              this.isArea2 = true
-            }
-          }
-        }, this)
-        this.city = ''
-        this.area = ''
-        this.citydisabled = false
-        this.areadisabled = true
-        if (this.datav === '1') {
-          this.$emit('myAddr', this.name, '1')
-        } else {
-          this.$emit('myAddr', this.name, '2')
+    city_ (val) {
+      this.cityList.forEach((res, index) => {
+        if (res.id === val) {
+          this.areaList = this.cityList[index].children
+          this.name[1] = this.cityList[index].name
+          this.name[2] = undefined
+          // if (this.cityList[index].district) {
+          //   this.isArea = true
+          // } else {
+          //   this.isArea = false
+          // }
         }
-
-      },
-      city_ (val) {
-        this.cityList.forEach((res, index) => {
-          if (res.id === val) {
-            this.areaList = this.cityList[index].children
-            this.name[1] = this.cityList[index].name
-            this.name[2] = undefined
-            // if (this.cityList[index].district) {
-            //   this.isArea = true
-            // } else {
-            //   this.isArea = false
-            // }
-          }
-        }, this)
-        this.area = ''
-        if (val !== '') {
-          this.areadisabled = false
-        }
-        if (this.datav === '1') {
-          this.$emit('myAddr', this.name, '1')
-        } else {
-          this.$emit('myAddr', this.name, '2')
-        }
-      },
-      area_ (val) {
-        this.areaList.forEach((res, index) => {
-          if (res.id === val) {
-            this.areaName = this.areaList[index].name
-            this.name[2] = this.areaList[index].name
-          }
-        })
-        if (this.datav === '1') {
-          this.$emit('myAddr', this.name, '1')
-        } else {
-          this.$emit('myAddr', this.name, '2')
-        }
-      },
-      // 重置清空
-      reset () {
-        this.province = ''
-        this.city = ''
-        this.area = ''
-        this.cityList = ''
-        this.areaList = ''
-        this.citydisabled = true // 默认城市禁止选择
-        this.areadisabled = true // 默认区域禁止选择
-        // this.isArea = true // 区域是否显示
+      }, this)
+      this.area = ''
+      if (val !== '') {
+        this.areadisabled = false
       }
+      if (this.datav === '1') {
+        this.$emit('myAddr', this.name, '1')
+      } else {
+        this.$emit('myAddr', this.name, '2')
+      }
+    },
+    area_ (val) {
+      this.areaList.forEach((res, index) => {
+        if (res.id === val) {
+          this.areaName = this.areaList[index].name
+          this.name[2] = this.areaList[index].name
+        }
+      })
+      if (this.datav === '1') {
+        this.$emit('myAddr', this.name, '1')
+      } else {
+        this.$emit('myAddr', this.name, '2')
+      }
+    },
+    // 重置清空
+    reset () {
+      this.province = ''
+      this.city = ''
+      this.area = ''
+      this.cityList = ''
+      this.areaList = ''
+      this.citydisabled = true // 默认城市禁止选择
+      this.areadisabled = true // 默认区域禁止选择
+      // this.isArea = true // 区域是否显示
     }
   }
+}
 </script>
 <style lang="scss" scoped>
 .el-row{

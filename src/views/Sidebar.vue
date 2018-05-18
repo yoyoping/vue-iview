@@ -233,6 +233,7 @@ export default {
     font-size: 13px;
   }
   .drop{
+    margin: 10px 0;
     .iconfont{
       font-size: 18px;color: #fff;
     }

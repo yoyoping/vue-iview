@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import Addr from '_components/addr'
+import Addr from '@components/addr'
 export default {
   components: {
     Addr
@@ -41,7 +41,6 @@ export default {
       } else {
         this.name2 = name.join('-')
       }
-
     }
   }
 }

@@ -87,11 +87,11 @@
   </div>
 </template>
 <script>
-import inforCard from '_components/inforCard'
-import LineChart from '_components/Charts/LineChart.vue'
-import RaddarChart from '_components/Charts/RaddarChart.vue'
-import PieChart from '_components/Charts/PieChart.vue'
-import BarChart from '_components/Charts/BarChart.vue'
+import inforCard from '@components/inforCard'
+import LineChart from '@components/Charts/LineChart.vue'
+import RaddarChart from '@components/Charts/RaddarChart.vue'
+import PieChart from '@components/Charts/PieChart.vue'
+import BarChart from '@components/Charts/BarChart.vue'
 const lineChartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],

@@ -7,7 +7,7 @@
       </Sider>
       <Layout>
         <Header :style="{padding: 0}" class="layout-header-bar">
-          <Row>
+          <Row class="header">
             <Col span="1">
               <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '20px 20px 0',cursor: 'pointer'}" type="navicon-round" size="24"></Icon>
             </Col>
@@ -46,10 +46,10 @@
 </template>
 <script>
 import Sidebar from './Sidebar.vue'
-import Breadcrumb from '_components/breadcrumb'
-import FullScreen from '_components/fullScreen'
-import MessageTip from '_components/messageTip'
-import Tags from '_components/Tags'
+import Breadcrumb from '@components/breadcrumb'
+import FullScreen from '@components/fullScreen'
+import MessageTip from '@components/messageTip'
+import Tags from '@components/Tags'
 export default {
   components: {
     Breadcrumb, Sidebar, FullScreen, MessageTip, Tags
@@ -213,5 +213,8 @@ export default {
     min-height: 260px;
     overflow-y: auto;
     overflow-x: hidden;
+  }
+  .header{
+    overflow: inherit;
   }
 </style>
