@@ -226,6 +226,22 @@ export default new Router({
           meta: {
             title: '文件上传'
           }
+        },
+        {
+          path: 'drag',
+          name: 'drag',
+          component: _import_('component/drag/Index'),
+          meta: {
+            title: '拖拽排序'
+          }
+        },
+        {
+          path: 'cityLink',
+          name: 'cityLink',
+          component: _import_('component/cityLink/Index'),
+          meta: {
+            title: '城市联动'
+          }
         }
       ]
     }

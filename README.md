@@ -1,18 +1,18 @@
-# my-project
+# vue-iView
 
-> 后台系统模板
+> 基于vue+iview开发的后台系统
 
 ## Build Setup
 
 ``` bash
 # install dependencies
-npm install
+npm install or yarn
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run dev or yarn run dev
 
 # build for production with minification
-npm run build
+npm run build or yarn run build
 
 # build for production and view the bundle analyzer report
 npm run build --report

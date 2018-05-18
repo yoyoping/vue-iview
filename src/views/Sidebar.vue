@@ -76,6 +76,14 @@
         <MenuItem name="upload">
         <i class="iconfont icon-erji-quanxianguanli"></i>文件上传</MenuItem>
       </router-link>
+      <router-link to="/component/drag">
+        <MenuItem name="drag">
+        <i class="iconfont icon-erji-quanxianguanli"></i>拖拽排序</MenuItem>
+      </router-link>
+      <router-link to="/component/cityLink">
+        <MenuItem name="cityLink">
+        <i class="iconfont icon-erji-quanxianguanli"></i>城市联动</MenuItem>
+      </router-link>
     </Submenu>
   </Menu>
   <div class="shrink_" v-else>
