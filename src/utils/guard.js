@@ -1,7 +1,7 @@
 import router from '../router'
 import { Message } from 'iview'
 let tags // 本地标签
-
+console.log(router)
 // 路由钩子函数
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title
