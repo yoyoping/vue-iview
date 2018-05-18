@@ -73,7 +73,6 @@
         this.area = ''
         this.citydisabled = false
         this.areadisabled = true
-        console.log(this.areadisabled)
         if (this.datav === '1') {
           this.$emit('myAddr', this.name, '1')
         } else {
@@ -98,7 +97,6 @@
         if (val !== '') {
           this.areadisabled = false
         }
-        console.log(this.areadisabled)
         if (this.datav === '1') {
           this.$emit('myAddr', this.name, '1')
         } else {

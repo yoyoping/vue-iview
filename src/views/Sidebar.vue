@@ -148,6 +148,17 @@
         <DropdownItem name="log"><i class="iconfont icon-caozuorizhi"></i>操作日志</DropdownItem>
       </DropdownMenu>
     </Dropdown>
+    <Dropdown placement="right-start" class="drop" @on-click="handleClickUserDropdown" >
+      <a href="javascript:void(0)">
+        <i class="iconfont icon-xitongguanli"></i>
+      </a>
+      <DropdownMenu slot="list" >
+        <DropdownItem name="editor"><i class="iconfont icon-weibiaoti5"></i>富文本</DropdownItem>
+        <DropdownItem name="upload"><i class="iconfont icon-jiaoseguanli"></i>文件上传</DropdownItem>
+        <DropdownItem name="drag"><i class="iconfont icon-erji-quanxianguanli"></i>拖拽排序</DropdownItem>
+        <DropdownItem name="cityLink"><i class="iconfont icon-caidan"></i>城市联动</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   </div>
 </div>
 </template>

@@ -371,8 +371,6 @@ export default {
     },
     // 上传成功
     handleSuccess (res, file, fileList) {
-      console.log(`${res}--${file}--${fileList}`)
-      debugger
     },
     // 上传失败
     handleFormatError () {
