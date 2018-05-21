@@ -80,6 +80,7 @@ export default {
 }
 .tagSelectCon{
   position: absolute;bottom: 0;right: 0;height: 38px;background-color: #fff;padding: 0 20px;
+  box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
   .tagSelect{
     margin-top: 10px;color: #fff;
     background-color: #2d8cf0;border-radius: 3px;padding: 0 10px;
