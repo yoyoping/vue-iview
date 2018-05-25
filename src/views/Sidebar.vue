@@ -8,7 +8,7 @@
       </template>
       <router-link to="/system/account">
         <MenuItem name="account">
-        <i class="iconfont icon-weibiaoti5"></i>账户管理</MenuItem>
+        <i class="iconfont icon-weibiaoti5"></i>账号管理</MenuItem>
       </router-link>
       <router-link to="/system/role">
         <MenuItem name="role">
@@ -91,7 +91,7 @@
       </a>
       <DropdownMenu slot="list" >
 
-        <DropdownItem name="account"><i class="iconfont icon-weibiaoti5"></i>账户管理</DropdownItem>
+        <DropdownItem name="account"><i class="iconfont icon-weibiaoti5"></i>账号管理</DropdownItem>
         <DropdownItem name="role"><i class="iconfont icon-jiaoseguanli"></i>角色管理</DropdownItem>
         <DropdownItem name="auth"><i class="iconfont icon-erji-quanxianguanli"></i>权限管理</DropdownItem>
         <DropdownItem name="menu"><i class="iconfont icon-caidan"></i>菜单管理</DropdownItem>

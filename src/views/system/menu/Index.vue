@@ -82,7 +82,7 @@ export default {
               expand: true
             },
             {
-              title: '账户管理',
+              title: '账号管理',
               expand: true
             },
             {
