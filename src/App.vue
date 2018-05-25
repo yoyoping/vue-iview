@@ -11,7 +11,7 @@ export default {
 </script>
 <style lang="scss">
 @import './assets/css/index.scss'; // 全局自定义的css样式
-@import './assets/icon/iconfont.css';
+@import './assets/icon/iconfont.css'; // 引入图标库
 #app{
   height: 100%;
 }
