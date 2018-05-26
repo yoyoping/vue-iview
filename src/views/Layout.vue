@@ -21,7 +21,7 @@
 
               <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
                 <a href="javascript:void(0)">
-                  <span class="main-user-name">{{ userName }}</span>
+                  <span class="main-user-name">{{ userInfo.name }}</span>
                   <Icon type="arrow-down-b"></Icon>
                 </a>
                 <DropdownMenu slot="list">
@@ -58,7 +58,6 @@ export default {
     return {
       isCollapsed: false,
       isFullScreen: false,
-      userName: 'admin',
       shrink: false
     }
   },
@@ -80,6 +79,9 @@ export default {
     },
     isKeep () {
       return this.$store.state.app.isKeep
+    },
+    userInfo () {
+      return JSON.parse(localStorage.userInfo)
     }
   },
   methods: {

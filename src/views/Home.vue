@@ -12,8 +12,8 @@
           <Col span="16" style="padding-left:6px;">
           <Row class-name="made-child-con-middle" type="flex" align="middle">
             <div>
-              <b class="card-user-infor-name">Admin</b>
-              <p>super admin</p>
+              <b class="card-user-infor-name">{{userInfo.name}}</b>
+              <p>super {{userInfo.name}}</p>
             </div>
           </Row>
           </Col>
@@ -124,6 +124,11 @@ export default {
         collection: 24389305,
         transfer: 39503498
       }
+    }
+  },
+  computed: {
+    userInfo () {
+      return JSON.parse(localStorage.userInfo)
     }
   },
   mounted () {

@@ -32,6 +32,7 @@
 export default {
   computed: {
     tags () {
+      debugger
       return JSON.parse(this.$store.state.app.tags)
     }
   },

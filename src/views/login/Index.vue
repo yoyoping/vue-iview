@@ -16,7 +16,7 @@
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="form.password" placeholder="请输入密码">
+              <Input type="password" v-model="form.password" placeholder="请输入密码" @keyup.enter.native="handleSubmit">
               <span slot="prepend">
                 <Icon :size="14" type="locked"></Icon>
               </span>
@@ -26,7 +26,7 @@
               <Button @click="handleSubmit" type="primary" long>登录</Button>
             </FormItem>
           </Form>
-          <p class="login-tip">输入任意用户名和密码即可</p>
+          <p class="login-tip">输入admin or user用户名和任意密码即可</p>
         </div>
       </Card>
     </div>
@@ -79,18 +79,27 @@ export default {
             }
             return new Promise((resolve, reject) => {
               setTimeout(() => {
-                if (params.userName !== 'admin' && params.userName !== 'user') {
+                if (params.userName === 'admin') {
+                  resolve ([200, {
+                    userInfo: {
+                      name: 'admin',
+                      roles: roles_
+                    }
+                  }])
+                } else if (params.userName === 'user') {
+                  resolve ([200, {
+                    userInfo: {
+                      name: 'user',
+                      roles: roles_
+                    }
+                  }])
+                } else {
+
+
                   reject({
                     status: 200,
                     message: '不存在此账号'
                   })
-                } else {
-                  resolve ([200, {
-                    userInfo: {
-                      name: 'yoyoping',
-                      roles: roles_
-                    }
-                  }])
                 }
               }, 4)
             })
@@ -119,8 +128,9 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg');
-  background-size: cover;
+  background-image: url('~@assets/images/login-bg.jpg');
+  background-size: 100% 100%;
+  // background-size: cover;
   background-position: center;
   position: relative;
   &-con {

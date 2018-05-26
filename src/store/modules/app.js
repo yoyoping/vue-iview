@@ -1,6 +1,6 @@
 const app = {
   state: {
-    tags: localStorage.pageOpenList, // 打开的标签页
+    tags: localStorage.tags, // 打开的标签页
     isKeep: true, // 是否缓存
     messageCount: 0, // 新消息
     count: 0,

@@ -45,7 +45,6 @@ router.beforeEach((to, from, next) => {
         }
       }
       router.app.$store.commit('TAGS', JSON.stringify(tags))
-      // localStorage.pageOpenList = JSON.stringify(tags)
     } else if (to.meta.role && roles.indexOf(to.meta.role) === -1) {
       Message.warning('您没有权限访问该页面')
     } else {
