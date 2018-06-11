@@ -80,26 +80,24 @@ export default {
             return new Promise((resolve, reject) => {
               setTimeout(() => {
                 if (params.userName === 'admin') {
-                  resolve ([200, {
+                  resolve([200, {
                     userInfo: {
                       name: 'admin',
                       roles: roles_
                     }
                   }])
                 } else if (params.userName === 'user') {
-                  resolve ([200, {
+                  resolve([200, {
                     userInfo: {
                       name: 'user',
                       roles: roles_
                     }
                   }])
                 } else {
-
-
-                  reject({
+                  reject(new Error({
                     status: 200,
                     message: '不存在此账号'
-                  })
+                  }))
                 }
               }, 4)
             })

@@ -176,7 +176,7 @@ export default {
   },
   watch: {
     '$route': function (newval, oldval) {
-      let isKeep = newval.query.isKeep === true ? true : false
+      let isKeep = newval.query.isKeep === true
       this.isKeep = isKeep
       this.$store.commit('SET_KEEP', isKeep)
     }
