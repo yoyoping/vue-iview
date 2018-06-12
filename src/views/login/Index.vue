@@ -111,6 +111,7 @@ export default {
             Cookies.set('Token', 'fb7yfd7by7fdby7fdb7f')
             localStorage.loginStatus = true
             localStorage.userInfo = JSON.stringify(res.data.userInfo)
+            this.$store.commit('SET_USER', res.data.userInfo)
             localStorage.roles = res.data.userInfo.roles.join('-')
             this.$router.push('/')
           }).catch(err => {

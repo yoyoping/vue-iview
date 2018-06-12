@@ -22,6 +22,9 @@ const user = {
     },
     MINUS_COUNT: (state) => {
       state.count -= 1
+    },
+    SET_USER: (state, res) => {
+      state.userInfo = res
     }
   },
   actions: {
