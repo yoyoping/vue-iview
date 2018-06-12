@@ -33,6 +33,10 @@ router.beforeEach((to, from, next) => {
         tags.forEach(item => {
           if (to.name === item.name) {
             flagPush = false
+            // 为了避免进入的详情id都是同一个
+            if (to.meta.isChange) {
+              item.url = to.path
+            }
           }
         })
         if (flagPush) {

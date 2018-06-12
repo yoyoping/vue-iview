@@ -1,6 +1,7 @@
-import posts from './post'
 import axios from 'axios'
 // import { guid } from './check'
+import qs from 'qs'
+import Cookies from 'js-cookie'
 import { Message } from 'iview'
 
 // 创建axios实例
@@ -14,8 +15,12 @@ const Axios = axios.create({
 
 // 添加请求拦截器
 Axios.interceptors.request.use(config => {
-  config.headers['token'] = localStorage.token || ''
-  config.headers['deviceid'] = localStorage.deviceid_
+  config.headers['token'] = Cookies.get('Token') || ''
+  config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+  if (config.method !== 'get') {
+    console.log(qs.stringify(config.data))
+    config.data = qs.stringify(config.data)
+  }
   // 在发送请求之前做些什么
   return config
 }, error => {
@@ -61,7 +66,7 @@ Axios.interceptors.response.use(response => {
       app_version: '2',
       deviceid: localStorage.deviceid_
     }
-    Axios.post(`/token`, posts(filter)).then(resp => {
+    Axios.post(`/token`, filter).then(resp => {
       if (resp.status === 200) {
         localStorage.token = resp.data.token
         localStorage.imgUrl = resp.data.image_url

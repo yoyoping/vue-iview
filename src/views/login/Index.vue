@@ -36,6 +36,7 @@
 <script>
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
+import Cookies from 'js-cookie'
 let roles_ = [] // 权限
 export default {
   data () {
@@ -107,6 +108,7 @@ export default {
             password: this.form.password
           }}).then(res => {
             console.log(res)
+            Cookies.set('Token', 'fb7yfd7by7fdby7fdb7f')
             localStorage.loginStatus = true
             localStorage.userInfo = JSON.stringify(res.data.userInfo)
             localStorage.roles = res.data.userInfo.roles.join('-')

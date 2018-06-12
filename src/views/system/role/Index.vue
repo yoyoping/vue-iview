@@ -127,7 +127,7 @@ export default {
         id: '1',
         identification: 'hahaha',
         name: 'admin',
-        auth: ['admin', 'userList']
+        auth: 'admin, userList'
       },
       addForm: { // 弹出框数据
         identification: '',

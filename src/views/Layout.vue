@@ -21,7 +21,7 @@
 
               <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
                 <a href="javascript:void(0)">
-                  <span class="main-user-name">{{ userInfo.name }}</span>
+                  <span class="main-user-name">{{ user.userInfo.name }}</span>
                   <Icon type="arrow-down-b"></Icon>
                 </a>
                 <DropdownMenu slot="list">
@@ -50,6 +50,7 @@ import Breadcrumb from '@components/breadcrumb'
 import FullScreen from '@components/fullScreen'
 import MessageTip from '@components/messageTip'
 import Tags from '@components/Tags'
+import { mapState } from 'vuex'
 export default {
   components: {
     Breadcrumb, Sidebar, FullScreen, MessageTip, Tags
@@ -80,9 +81,7 @@ export default {
     isKeep () {
       return this.$store.state.app.isKeep
     },
-    userInfo () {
-      return JSON.parse(localStorage.userInfo)
-    }
+    ...mapState(['user'])
   },
   methods: {
     collapsedSider () {

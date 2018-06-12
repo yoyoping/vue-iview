@@ -1,13 +1,12 @@
-// let userInfo_
-// debugger
-// if (localStorage.userInfo) {
-//   userInfo_ = JSON.parse(localStorage.userInfo)
-// } else {
-//   userInfo_ = ''
-// }
+let userInfo
+if (localStorage.userInfo) {
+  userInfo = JSON.parse(localStorage.userInfo)
+} else {
+  userInfo = ''
+}
 const user = {
   state: {
-    userInfo: localStorage.userInfo,
+    userInfo: userInfo,
     message: '点击我',
     count: 1
   },

@@ -115,7 +115,8 @@ export default new Router({
           name: 'userDetail',
           component: _import_('userList/Detail'),
           meta: {
-            title: '用户详情'
+            title: '用户详情',
+            isChange: true
           }
         }
       ]

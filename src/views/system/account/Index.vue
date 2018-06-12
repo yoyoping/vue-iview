@@ -165,7 +165,7 @@ export default {
         username: 'admin',
         name: '管理员',
         avatar: '',
-        role: ['admin', 'userList']
+        role: 'admin, userList'
       },
       addForm: { // 弹出框数据
         username: '',
