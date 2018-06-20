@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
       if (tags.length === 0) {
         tags.push(tagsitem)
       } else {
-        tags.forEach(item => {
+        tags.forEach(item => { // 循环当前打开的标签是否存在
           if (to.name === item.name) {
             flagPush = false
             // 为了避免进入的详情id都是同一个
@@ -39,12 +39,30 @@ router.beforeEach((to, from, next) => {
             }
           }
         })
+        // 循环更多标签里面是否存在
+        // let moreTag
+        // if (localStorage.moreTag) {
+        //   moreTag = JSON.parse(localStorage.moreTag)
+        // } else {
+        //   moreTag = []
+        //   localStorage.moreTag = JSON.stringify(moreTag)
+        // }
+        // moreTag.forEach(item => {
+        //   if (to.name === item.name) {
+        //     flagPush = false
+        //     // 为了避免进入的详情id都是同一个
+        //     if (to.meta.isChange) {
+        //       item.url = to.path
+        //     }
+        //   }
+        // })
         if (flagPush) {
           if (tagsitem.name !== 'login') {
             if (tags.length >= 10) {
               tags.splice(1, 1)
             }
             tags.push(tagsitem)
+            // router.app.$store.commit('SET_TAGCHANGE', 'add')
           }
         }
       }

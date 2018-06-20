@@ -5,6 +5,8 @@ const app = {
     messageCount: 0, // 新消息
     count: 0,
     type: '1'
+    // tagChange: '', // 是否增加了一个tag标签
+    // moreTag: localStorage.moreTag // 超出的tag标签数据
   },
   mutations: {
     SET_COUNT: (state, res) => {
@@ -26,6 +28,13 @@ const app = {
     SET_MESSAGECOUNT (state, count) {
       state.messageCount = count
     }
+    // SET_MORETAG (state, res) {
+    //   state.moreTag = res
+    //   localStorage.moreTag = res
+    // },
+    // SET_TAGCHANGE (state, res) {
+    //   state.tagChange = res
+    // }
   },
   actions: {
     setcount ({ commit }, res) {

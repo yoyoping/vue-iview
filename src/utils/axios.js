@@ -16,7 +16,7 @@ const Axios = axios.create({
 // 添加请求拦截器
 Axios.interceptors.request.use(config => {
   config.headers['token'] = Cookies.get('Token') || ''
-  config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+  // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   if (config.method !== 'get') {
     console.log(qs.stringify(config.data))
     config.data = qs.stringify(config.data)

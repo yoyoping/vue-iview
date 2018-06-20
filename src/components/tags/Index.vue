@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <Row>
-      <Col span="22">
+      <Col span="22" ref="tagList" style="white-space:nowrap;">
         <Tag
           type="dot"
           :closable="item.name === 'home' ? false : true"
@@ -26,15 +26,40 @@
         </DropdownMenu>
       </Dropdown>
     </div>
+    <!-- <ul class="moreList">
+      <li>hahaha</li>
+      <li>hahaha</li>
+      <li>hahaha</li>
+      <li>hahaha</li>
+      <li>hahaha</li>
+    </ul> -->
   </div>
 </template>
 <script>
 export default {
   computed: {
     tags () {
-      debugger
       return JSON.parse(this.$store.state.app.tags)
     }
+    // tagChange () {
+    // if (this.$store.state.app.tagChange === 'add') {
+    // this._tagChange()
+    // }
+    // return this.$store.state.app.tagChange
+    // }
+  },
+  mounted () {
+    // this.$nextTick(function () {
+    //   console.log(this.$refs.tagList.$el.offsetHeight)
+    //   if (this.$refs.tagList.$el.offsetHeight > 42) {
+    //     console.log('超出')
+    //   }
+    // })
+
+    // 窗口拖动就会更改标签
+    // window.onresize = () => {
+    //   this._tagChange()
+    // }
   },
   methods: {
     close (index, name) {
@@ -71,13 +96,34 @@ export default {
         this.$store.commit('TAGS', JSON.stringify(this.tags))
         this.$router.push({path: '/', query: { isKeep: true }})
       }
+    },
+    // 判断tag标签是否超出
+    _tagChange () {
+      // this.$store.commit('SET_TAGCHANGE', 'less')
+      // setTimeout(() => {
+      //   if (this.$refs.tagList.$el.offsetHeight > 42) {
+      //     let tagOpenList = JSON.parse(localStorage.tags)
+      //     let moreList_ = tagOpenList.pop()
+      //     this.$store.commit('TAGS', JSON.stringify(tagOpenList))
+      //     let moreTag = []
+      //     moreTag.push(moreList_)
+      //     this.$store.commit('SET_MORETAG', JSON.stringify(moreTag))
+      //   } else {
+      //     // console.log('未超出')
+      //   }
+      // })
+    }
+  },
+  watch: {
+    tagChange (val, oldVal) {
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 .tags{
-  height: 40px;box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);padding: 3px 20px;position: relative;
+  height: 40px;
+  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);padding: 3px 20px;position: relative;overflow: hidden;
 }
 .tagSelectCon{
   position: absolute;bottom: 0;right: 0;height: 38px;background-color: #fff;padding: 0 20px;
@@ -89,5 +135,11 @@ export default {
   .ivu-dropdown-rel a{
     color: #fff;font-size: 12px;
   }
+}
+.moreList{
+  position: absolute;
+  right: 120px;
+  top: 40px;
+  z-index: 5
 }
 </style>

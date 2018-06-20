@@ -1,2 +1,0 @@
-webpackJsonp([22],{J0ri:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var l={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  投诉管理\n")])},staticRenderFns:[]},r=t("VU/8")(null,l,!1,null,null,null);n.default=r.exports}});
-//# sourceMappingURL=22.396bedf8e1cc259505aa.js.map

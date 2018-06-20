@@ -18,7 +18,7 @@
     <Table stripe border :columns="columns1" :data="data1"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
-        <Page :total="100" :current="1" @on-change="changePage"></Page>
+        <Page :total="100" :current="1"></Page>
       </div>
     </div>
   </div>
