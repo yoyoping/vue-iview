@@ -18,18 +18,10 @@
               <full-screen v-model="isFullScreen" @on-change="fullscreenChange" class="action fullscreen"></full-screen>
               <message-tip v-model="mesCount" class="action"></message-tip>
               <!-- <theme-switch></theme-switch> -->
-
-              <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
-                <a href="javascript:void(0)">
-                  <span class="main-user-name">{{ user.userInfo.name }}</span>
-                  <Icon type="arrow-down-b"></Icon>
-                </a>
-                <DropdownMenu slot="list">
-                  <DropdownItem name="ownSpace">个人中心</DropdownItem>
-                  <DropdownItem name="loginout" divided><div >退出登录</div></DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              <Avatar src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg" style="background: #619fe7;margin-left: 10px;"></Avatar>
+              <Tooltip content="修改密码" placement="bottom">
+                <Icon type="android-lock" :size="20" class="modPwdBtn" @click.native="isShowPwd = true"></Icon>
+              </Tooltip>
+              <own-action></own-action>
             </div>
           </Row>
         </Header>
@@ -42,6 +34,9 @@
         </Content>
       </Layout>
     </Layout>
+
+    <!-- 弹出密码框 -->
+    <mod-pwd :isShow="isShowPwd" @closePwd="closePwd"></mod-pwd>
   </div>
 </template>
 <script>
@@ -50,16 +45,19 @@ import Breadcrumb from '@components/breadcrumb'
 import FullScreen from '@components/fullScreen'
 import MessageTip from '@components/messageTip'
 import Tags from '@components/Tags'
+import modPwd from '@components/modPwd'
+import ownAction from '@components/ownAction'
 import { mapState } from 'vuex'
 export default {
   components: {
-    Breadcrumb, Sidebar, FullScreen, MessageTip, Tags
+    Breadcrumb, Sidebar, FullScreen, MessageTip, Tags, modPwd, ownAction
   },
   data () {
     return {
       isCollapsed: false,
       isFullScreen: false,
-      shrink: false
+      shrink: false,
+      isShowPwd: false // 是否显示修改密码弹出框
     }
   },
   computed: {
@@ -84,6 +82,10 @@ export default {
     ...mapState(['user'])
   },
   methods: {
+    // 关闭修改密码弹窗
+    closePwd () {
+      this.isShowPwd = false
+    },
     collapsedSider () {
       this.$refs.side1.toggleCollapse()
       setTimeout(() => {
@@ -91,25 +93,6 @@ export default {
       }, 100)
     },
     fullscreenChange (isFullScreen) {
-    },
-    handleClickUserDropdown (name) {
-      if (name === 'ownSpace') {
-        // util.openNewPage(this, 'ownspace_index')
-        // this.$router.push({
-        //   name: 'ownspace_index'
-        // })
-      } else if (name === 'loginout') {
-        this.$Modal.confirm({
-          title: '退出提示',
-          content: '确认要退出当前账号吗？',
-          onOk: () => {
-            this.$router.push('/login')
-            localStorage.removeItem('loginStatus')
-            localStorage.removeItem('userInfo')
-            localStorage.removeItem('roles')
-          }
-        })
-      }
     }
   }
 }
@@ -198,7 +181,7 @@ export default {
     right: 0;
     top: 0;
     height: 100%;
-    width: 220px;
+    width: 300px;
   }
   .ivu-row{
     height: 100%;overflow: hidden;
@@ -217,5 +200,11 @@ export default {
   }
   .header{
     overflow: inherit;
+  }
+  .modPwdBtn{
+    margin-left: 10px;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
   }
 </style>

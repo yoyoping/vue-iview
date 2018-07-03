@@ -1,5 +1,6 @@
 import router from '../router'
-import { Message } from 'iview'
+import { Message, LoadingBar } from 'iview'
+import Cookies from 'js-cookie'
 let tags // 本地标签
 console.log(router)
 // 路由钩子函数
@@ -7,12 +8,13 @@ router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title
   // 拦截路由
   let roles
-  if (localStorage.loginStatus) {
+  if (Cookies.get('loginStatus')) {
     roles = localStorage.roles.split('-')
 
     // 判断是否缓存
     // if (to.meta.keepAlive)
     if (roles.indexOf('admin') !== -1) { // 如果是管理员拥有所有权限
+      LoadingBar.start()
       next()
 
       // 跳转的时候添加tag标签
@@ -39,30 +41,12 @@ router.beforeEach((to, from, next) => {
             }
           }
         })
-        // 循环更多标签里面是否存在
-        // let moreTag
-        // if (localStorage.moreTag) {
-        //   moreTag = JSON.parse(localStorage.moreTag)
-        // } else {
-        //   moreTag = []
-        //   localStorage.moreTag = JSON.stringify(moreTag)
-        // }
-        // moreTag.forEach(item => {
-        //   if (to.name === item.name) {
-        //     flagPush = false
-        //     // 为了避免进入的详情id都是同一个
-        //     if (to.meta.isChange) {
-        //       item.url = to.path
-        //     }
-        //   }
-        // })
         if (flagPush) {
           if (tagsitem.name !== 'login') {
             if (tags.length >= 10) {
               tags.splice(1, 1)
             }
             tags.push(tagsitem)
-            // router.app.$store.commit('SET_TAGCHANGE', 'add')
           }
         }
       }
@@ -72,16 +56,22 @@ router.beforeEach((to, from, next) => {
     } else {
       if (from.matched.length !== 0) {
         localStorage.isRefresh_ = '1'
-        next()
       }
+      LoadingBar.start()
       next()
     }
   } else {
     roles = []
     if (to.path === '/login') {
+      LoadingBar.start()
       next()
     } else {
+      LoadingBar.start()
       next({ path: '/login' })
     }
   }
+})
+
+router.afterEach(() => {
+  LoadingBar.finish()
 })

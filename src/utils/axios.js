@@ -18,7 +18,6 @@ Axios.interceptors.request.use(config => {
   config.headers['token'] = Cookies.get('Token') || ''
   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   if (config.method !== 'get') {
-    console.log(qs.stringify(config.data))
     config.data = qs.stringify(config.data)
   }
   // 在发送请求之前做些什么

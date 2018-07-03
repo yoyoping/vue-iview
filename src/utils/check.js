@@ -34,6 +34,12 @@ export function validatAlphabetsNumOthers (str) {
   return reg.test(str)
 }
 
+/* 数字、26个英文字母 . - _ */
+export function validsp_ (str) {
+  const reg = /^[A-Za-z0-9._-]+$/
+  return reg.test(str)
+}
+
 /* 非空字符集 */
 export function noeEmpty (str) {
   const reg = /^\S+$/
@@ -88,4 +94,17 @@ export function guid () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   }
   return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4())
+}
+
+// 数字、26个英文字母 . - _，封装验证错误
+export const PUValid = (rule, value, callback) => {
+  if (validsp_(value)) {
+    if (value.length >= 6 && value.length <= 20) {
+      callback()
+    } else {
+      callback(new Error('长度必须在6-20个字符之内'))
+    }
+  } else {
+    callback(new Error('格式不正确（数字、26个英文字母 . - _ ）'))
+  }
 }

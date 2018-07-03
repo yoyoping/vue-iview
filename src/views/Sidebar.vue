@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="menuCon">
   <Menu :active-name="$route.name" theme="dark" width="auto" :class="menuitemClasses" v-if="!shrink" :open-names="[$route.matched[0].name]">
     <Submenu name="system">
       <template slot="title">
@@ -228,5 +228,9 @@ export default {
     .iconfont{
       font-size: 18px;color: #fff;
     }
+  }
+  .menuCon{
+    height: calc(100% - 64px);
+    overflow-y: auto;
   }
 </style>

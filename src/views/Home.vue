@@ -132,13 +132,12 @@ export default {
     }
   },
   mounted () {
-    // this.getList()
+    this.getList()
   },
   methods: {
-    getList () {
-      this.axios.get('/userlist').then(res => {
-        console.log(res)
-      })
+    async getList () {
+      const data = await this.axios.get('/userlist')
+      console.log(data)
     }
   }
 }
