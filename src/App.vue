@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.myGlobalMethod()
+  }
 }
 </script>
 <style lang="scss">

@@ -196,6 +196,23 @@ export default new Router({
       ]
     },
     {
+      path: 'testUtil',
+      name: '',
+      component: _import_('Layout'),
+      redirect: '/testUtil',
+      children: [
+        {
+          path: '/testUtil',
+          name: 'errorCount',
+          component: _import_('testUtil/Index'),
+          meta: {
+            title: '测试',
+            role: 'admin'
+          }
+        }
+      ]
+    },
+    {
       path: '/component',
       name: 'component',
       component: _import_('Layout'),

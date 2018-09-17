@@ -33,7 +33,9 @@ export default {
     }
   },
   mounted () {
-    this.initChart()
+    this.$nextTick(() => {
+      this.initChart()
+    })
   },
   beforeDestroy () {
     if (!this.chart) {
