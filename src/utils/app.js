@@ -75,6 +75,20 @@ util.debounce = function (func, wait, immediate) {
   }
 }
 
+/**
+ * 函数防抖
+ * 使用需要在全局new debounce()
+ */
+util.debounce2 = function () {
+  let timeout
+  return function (func, wait) {
+    let context = this // 传给目标函数
+    clearTimeout(timeout)
+    timeout = setTimeout(
+      () => { func.apply(context, arguments) }, wait)
+  }
+}
+
 // 函数节流
 util.throttle = function () {
   let flags = true // 是否首次调用
