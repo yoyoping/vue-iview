@@ -80,7 +80,6 @@ export default {
         const params = this.pwdForm
         this.cancel()
         console.log(params)
-        debugger
         if (valid) {
           (async () => {
             await this.axios.put('/personal/password', this.pwdForm)
