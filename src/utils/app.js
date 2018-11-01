@@ -97,11 +97,10 @@ util.throttle = function () {
     if (flags) {
       _fn()
       flags = false
-      return false
+      setTimeout(function () { // 延迟执行
+        flags = true
+      }, time)
     }
-    setTimeout(function () { // 延迟执行
-      flags = true
-    }, time)
   }
 }
 
