@@ -4,7 +4,7 @@
       <Col span="22" ref="tagList" style="white-space:nowrap;">
         <Tag
           type="dot"
-          :closable="item.name === 'home' ? false : true"
+          :closable="!(item.name === 'home')"
           :color="item.name === $route.name ? 'blue' : 'default'"
           v-for="(item, index) in tags"
           :key="item.name"
@@ -123,7 +123,7 @@ export default {
 <style lang="scss" scoped>
 .tags{
   height: 40px;
-  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);padding: 3px 20px;position: relative;overflow: hidden;
+  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);padding: 3px 20px;position: relative;
 }
 .tagSelectCon{
   position: absolute;bottom: 0;right: 0;height: 38px;background-color: #fff;padding: 0 20px;
