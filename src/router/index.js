@@ -203,7 +203,7 @@ export default new Router({
       children: [
         {
           path: '/testUtil',
-          name: 'errorCount',
+          name: 'testUtil',
           component: _import_('testUtil/Index'),
           meta: {
             title: '测试',
