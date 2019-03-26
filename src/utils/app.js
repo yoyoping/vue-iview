@@ -135,7 +135,7 @@ util.isAuth = (name) => {
   })
   return authArr.includes(name)
 }
-// 取出ocalStorage的userInfo对应的key值
+// 取出localStorage的userInfo对应的key值
 util.getUserInfo = function (key) {
   let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   for (let i in userInfo) {
