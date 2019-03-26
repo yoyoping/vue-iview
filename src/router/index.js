@@ -35,7 +35,7 @@ export default new Router({
       path: '/system',
       name: 'system',
       component: _import_('Layout'),
-      redirect: '/system/auth',
+      redirect: '/system/account',
       meta: {
         title: '系统管理'
       },
