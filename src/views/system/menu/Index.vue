@@ -39,7 +39,7 @@
           </FormItem>
           <FormItem class="btn">
             <Button type="primary" @click="handleSubmit('formValidate')">提交</Button>
-            <Button type="ghost" @click="$refs['formValidate'].resetFields()" style="margin-left: 8px">重置</Button>
+            <Button @click="$refs['formValidate'].resetFields()" style="margin-left: 8px">重置</Button>
           </FormItem>
         </Form>
       </Card>

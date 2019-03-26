@@ -10,7 +10,7 @@
           </FormItem>
           <FormItem prop="phone">
             <Input type="text" v-model="formInline.phone" placeholder="请输入顾问手机号">
-              <Icon type="iphone" slot="prepend"></Icon>
+              <Icon type="ios-phone-portrait" slot="prepend"></Icon>
             </Input>
           </FormItem>
           <FormItem>
@@ -34,7 +34,7 @@
       title="编辑顾问">
       <p slot="footer">
         <Button type="primary">提交</Button>
-        <Button type="ghost" @click="modmd = false" style="margin-left: 8px">取消</Button>
+        <Button @click="modmd = false" style="margin-left: 8px">取消</Button>
       </p>
       <Form :model="modForm" :label-width="120">
         <FormItem label="姓名" prop="name">
@@ -146,9 +146,9 @@ export default {
           key: 'state',
           align: 'center',
           render: (h, params) => {
-            let color = 'green'
+            let color = 'success'
             if (params.row.state !== '正常') {
-              color = 'yellow'
+              color = 'warning'
             }
             return h('Tag', {
               props: {

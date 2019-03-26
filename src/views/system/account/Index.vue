@@ -5,12 +5,12 @@
         <Form ref="formInline" :model="formInline" inline>
           <FormItem prop="user">
             <Input type="text" v-model="formInline.user" placeholder="Username">
-              <Icon type="ios-person-outline" slot="prepend"></Icon>
+              <Icon type="ios-person-outline" slot="prepend" />
             </Input>
           </FormItem>
           <FormItem prop="password">
             <Input type="password" v-model="formInline.password" placeholder="Password">
-              <Icon type="ios-locked-outline" slot="prepend"></Icon>
+              <Icon type="ios-lock-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
           <FormItem>
@@ -40,7 +40,7 @@
       @on-ok="ok('formValidate')">
       <p slot="footer">
         <Button type="primary" @click="handleSubmit('formValidate')">提交</Button>
-        <Button type="ghost" @click="mod = false" style="margin-left: 8px">取消</Button>
+        <Button @click="mod = false" style="margin-left: 8px">取消</Button>
       </p>
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
         <!-- <FormItem label="ID" prop="id">
@@ -98,7 +98,7 @@
       @on-ok="ok('formValidate')">
       <p slot="footer">
         <Button type="primary" @click="addUser('addForm')">提交</Button>
-        <Button type="ghost" @click="addRoleModal = false" style="margin-left: 8px">取消</Button>
+        <Button @click="addRoleModal = false" style="margin-left: 8px">取消</Button>
       </p>
       <Form ref="addForm" :model="addForm" :rules="ruleValidate" :label-width="80">
         <!-- <FormItem label="ID" prop="id">

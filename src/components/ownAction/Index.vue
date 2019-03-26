@@ -3,7 +3,7 @@
     <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
       <a href="javascript:void(0)">
         <span class="main-user-name">{{ user.userInfo.name }}</span>
-        <Icon type="arrow-down-b"></Icon>
+        <Icon type="md-arrow-dropdown" />
       </a>
       <DropdownMenu slot="list">
         <DropdownItem name="modself">修改信息</DropdownItem>

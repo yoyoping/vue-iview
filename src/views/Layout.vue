@@ -9,7 +9,7 @@
         <Header :style="{padding: 0}" class="layout-header-bar">
           <Row class="header">
             <Col span="1">
-              <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '20px 20px 0',cursor: 'pointer'}" type="navicon-round" size="24"></Icon>
+              <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px',cursor: 'pointer'}" type="md-menu" size="24"></Icon>
             </Col>
             <Col span="6">
               <Breadcrumb></Breadcrumb>
@@ -18,9 +18,11 @@
               <full-screen v-model="isFullScreen" @on-change="fullscreenChange" class="action fullscreen"></full-screen>
               <message-tip v-model="mesCount" class="action"></message-tip>
               <!-- <theme-switch></theme-switch> -->
-              <Tooltip content="修改密码" placement="bottom">
-                <Icon type="android-lock" :size="20" class="modPwdBtn" @click.native="isShowPwd = true"></Icon>
-              </Tooltip>
+              <div class="action">
+                <Tooltip content="修改密码" placement="bottom" class="dfTooltip">
+                  <Icon type="md-lock" :size="23" class="modPwdBtn" @click.native="isShowPwd = true"></Icon>
+                </Tooltip>
+              </div>
               <own-action></own-action>
             </div>
           </Row>
@@ -165,8 +167,8 @@ export default {
       font-size: 14px;padding: 0;text-align: center;
     }
   }
-  .action{
-    display: inline-block;margin-right: 10px;
+  .action,.modPwd2{
+    display: inline-block;margin-right: 10px;height:23px;width: 23px;margin-top: 20px;position: relative;
   }
   .fullscreen{
     display: inline-block;
@@ -174,7 +176,7 @@ export default {
     text-align: center;
     cursor: pointer;
     position: relative;
-    top: 4px;
+    // top: 4px;
   }
   .header-middle-con{
     position: absolute;

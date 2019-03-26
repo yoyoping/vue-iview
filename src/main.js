@@ -16,7 +16,10 @@ import lodash from 'lodash'
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
-Vue.use(iView)
+Vue.use(iView, {
+  transfer: true,
+  size: 'default'
+})
 Vue.use(MyPlugin)
 
 // 创建全局请求

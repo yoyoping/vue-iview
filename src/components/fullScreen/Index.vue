@@ -1,7 +1,7 @@
 <template>
   <div @click="handleChange" v-if="showFullScreenBtn" class="full-screen-btn-con">
-    <Tooltip :content="value ? '退出全屏' : '全屏'" placement="bottom">
-      <Icon :type="value ? 'arrow-shrink' : 'arrow-expand'" :size="23"></Icon>
+    <Tooltip :content="value ? '退出全屏' : '全屏'" placement="bottom" class="dfTooltip">
+      <Icon :type="value ? 'md-contract' : 'md-expand'" :size="23"></Icon>
     </Tooltip>
   </div>
 </template>

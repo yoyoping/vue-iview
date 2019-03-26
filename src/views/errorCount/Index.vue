@@ -45,7 +45,7 @@ export default {
           render: (h, params) => {
             return h('Tag', {
               props: {
-                color: 'yellow'
+                color: 'warning'
               }
             }, params.row.errText)
           }

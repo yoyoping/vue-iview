@@ -8,7 +8,7 @@
       </FormItem>
       <FormItem prop="phone">
         <Input type="text" v-model="formInline.phone" placeholder="请输入用户手机号">
-          <Icon type="iphone" slot="prepend"></Icon>
+          <Icon type="ios-phone-portrait" slot="prepend"></Icon>
         </Input>
       </FormItem>
       <FormItem>

@@ -5,7 +5,7 @@
         <Tag
           type="dot"
           :closable="!(item.name === 'home')"
-          :color="item.name === $route.name ? 'blue' : 'default'"
+          :color="item.name === $route.name ? 'primary' : 'default'"
           v-for="(item, index) in tags"
           :key="item.name"
           @click.native="linkTo(item.url)"
