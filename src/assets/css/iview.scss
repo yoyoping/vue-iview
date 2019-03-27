@@ -32,25 +32,15 @@
 }
 
 // 修改菜单默认背景色
-.ivu-layout-sider{
-  background:#001529;
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
+  background:#000C17 !important;
 }
-.ivu-menu-dark{
-  background:#001529;
-}
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title{
-  background:#001529;
-}
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened{
-  background:#001529;
-}
-
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover{
-  background:#000C17;
-}
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover{
-  background:#001529;
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened,.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title,.ivu-layout-sider,.ivu-menu-dark,.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover{
+  background:#001529 !important;
 }
 .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
-  background:#000C17;
+  background:#000C17 !important;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active{
+  background:#2d8cf0 !important;
 }
