@@ -1,6 +1,10 @@
 <template>
   <div @click="showMessage" class="message-con">
-    <Tooltip :content="value > 0 ? '有' + value + '条未读消息' : '无未读消息'" placement="bottom" class="dfTooltip">
+    <Tooltip
+      :content="value > 0 ? '有' + value + '条未读消息' : '无未读消息'"
+      placement="bottom"
+      class="dfTooltip"
+    >
       <Badge :count="value" dot>
         <Icon type="ios-text" :size="23" />
       </Badge>
@@ -10,23 +14,23 @@
 
 <script>
 export default {
-  name: 'messageTip',
-  data () {
+  name: "messageTip",
+  data() {
     return {
       value: 3
-    }
+    };
   },
   methods: {
-    showMessage () {
+    showMessage() {
       // this.$router.push({
       //   name: 'message_index'
       // })
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-.ivu-badge{
+.ivu-badge {
   cursor: pointer;
 }
 </style>

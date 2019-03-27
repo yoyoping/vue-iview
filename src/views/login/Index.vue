@@ -10,16 +10,21 @@
           <Form ref="loginForm" :model="form" :rules="rules">
             <FormItem prop="userName">
               <Input v-model="form.userName" placeholder="请输入用户名">
-              <span slot="prepend">
-                <Icon :size="16" type="ios-person"></Icon>
-              </span>
+                <span slot="prepend">
+                  <Icon :size="16" type="ios-person"></Icon>
+                </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="form.password" placeholder="请输入密码" @keyup.enter.native="handleSubmit">
-              <span slot="prepend">
-                <Icon :size="14" type="md-lock"></Icon>
-              </span>
+              <Input
+                type="password"
+                v-model="form.password"
+                placeholder="请输入密码"
+                @keyup.enter.native="handleSubmit"
+              >
+                <span slot="prepend">
+                  <Icon :size="14" type="md-lock"></Icon>
+                </span>
               </Input>
             </FormItem>
             <FormItem>
@@ -34,102 +39,119 @@
 </template>
 
 <script>
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
-import Cookies from 'js-cookie'
-let roles_ = [] // 权限
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import Cookies from "js-cookie";
+let roles_ = []; // 权限
 export default {
-  data () {
+  data() {
     return {
       form: {
-        userName: 'admin',
-        password: ''
+        userName: "admin",
+        password: ""
       },
       rules: {
-        userName: [{
-          required: true,
-          message: '账号不能为空',
-          trigger: 'blur'
-        }],
-        password: [{
-          required: true,
-          message: '密码不能为空',
-          trigger: 'blur'
-        }]
+        userName: [
+          {
+            required: true,
+            message: "账号不能为空",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: "密码不能为空",
+            trigger: "blur"
+          }
+        ]
       }
-    }
+    };
   },
   methods: {
-    handleSubmit () {
-      this.$refs.loginForm.validate((valid) => {
+    handleSubmit() {
+      this.$refs.loginForm.validate(valid => {
         if (valid) {
           // 模拟接口
-          const mock = new MockAdapter(axios)
-          mock.onPost('/login',
-            {
+          const mock = new MockAdapter(axios);
+          mock
+            .onPost("/login", {
               params: {
                 userName: this.form.userName,
                 password: this.form.password
               }
-            }).reply(config => {
-            const params = JSON.parse(config.data).params // 上传的参数
-            if (params.userName === 'admin') {
-              roles_ = ['admin']
-            } else if (params.userName === 'user') {
-              roles_ = ['user']
-            }
-            return new Promise((resolve, reject) => {
-              setTimeout(() => {
-                if (params.userName === 'admin') {
-                  resolve([200, {
-                    userInfo: {
-                      name: 'admin',
-                      roles: roles_
-                    }
-                  }])
-                } else if (params.userName === 'user') {
-                  resolve([200, {
-                    userInfo: {
-                      name: 'user',
-                      roles: roles_
-                    }
-                  }])
-                } else {
-                  reject(new Error({
-                    status: 200,
-                    message: '不存在此账号'
-                  }))
-                }
-              }, 4)
             })
-          })
-          axios.post('/login', {params: {
-            userName: this.form.userName,
-            password: this.form.password
-          }}).then(res => {
-            console.log(res)
-            Cookies.set('Token', 'fb7yfd7by7fdby7fdb7f')
-            Cookies.set('loginStatus', true)
-            localStorage.userInfo = JSON.stringify(res.data.userInfo)
-            this.$store.commit('SET_USER', res.data.userInfo)
-            localStorage.roles = res.data.userInfo.roles.join('-')
-            this.$router.push('/')
-          }).catch(err => {
-            this.$Message.error(err.message)
-          })
+            .reply(config => {
+              const params = JSON.parse(config.data).params; // 上传的参数
+              if (params.userName === "admin") {
+                roles_ = ["admin"];
+              } else if (params.userName === "user") {
+                roles_ = ["user"];
+              }
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  if (params.userName === "admin") {
+                    resolve([
+                      200,
+                      {
+                        userInfo: {
+                          name: "admin",
+                          roles: roles_
+                        }
+                      }
+                    ]);
+                  } else if (params.userName === "user") {
+                    resolve([
+                      200,
+                      {
+                        userInfo: {
+                          name: "user",
+                          roles: roles_
+                        }
+                      }
+                    ]);
+                  } else {
+                    reject(
+                      new Error({
+                        status: 200,
+                        message: "不存在此账号"
+                      })
+                    );
+                  }
+                }, 4);
+              });
+            });
+          axios
+            .post("/login", {
+              params: {
+                userName: this.form.userName,
+                password: this.form.password
+              }
+            })
+            .then(res => {
+              console.log(res);
+              Cookies.set("Token", "fb7yfd7by7fdby7fdb7f");
+              Cookies.set("loginStatus", true);
+              localStorage.userInfo = JSON.stringify(res.data.userInfo);
+              this.$store.commit("SET_USER", res.data.userInfo);
+              localStorage.roles = res.data.userInfo.roles.join("-");
+              this.$router.push("/");
+            })
+            .catch(err => {
+              this.$Message.error(err.message);
+            });
         }
-      })
+      });
     }
   }
-}
-
+};
 </script>
 
 <style scoped lang="scss">
 .login {
   width: 100%;
   height: 100%;
-  background-image: url('~@assets/images/login-bg.jpg');
+  background-image: url("~@assets/images/login-bg.jpg");
   background-size: 100% 100%;
   // background-size: cover;
   background-position: center;

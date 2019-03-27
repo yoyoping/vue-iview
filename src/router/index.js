@@ -1,259 +1,259 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
-const _import_ = file => () => import('../views/' + file + '.vue')
+const _import_ = file => () => import("../views/" + file + ".vue");
 
 export default new Router({
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: _import_('login/Index'),
+      path: "/login",
+      name: "login",
+      component: _import_("login/Index"),
       meta: {
-        title: '登录'
+        title: "登录"
       }
     },
     {
-      path: '',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/',
+      path: "",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/",
       children: [
         {
-          path: '/',
-          name: 'home',
-          component: _import_('Home'),
+          path: "/",
+          name: "home",
+          component: _import_("Home"),
           meta: {
-            title: '首页'
+            title: "首页"
           }
         }
       ]
     },
     {
-      path: '/system',
-      name: 'system',
-      component: _import_('Layout'),
-      redirect: '/system/account',
+      path: "/system",
+      name: "system",
+      component: _import_("Layout"),
+      redirect: "/system/account",
       meta: {
-        title: '系统管理'
+        title: "系统管理"
       },
       children: [
         {
-          path: 'auth',
-          name: 'auth',
-          component: _import_('system/auth/Index'),
+          path: "auth",
+          name: "auth",
+          component: _import_("system/auth/Index"),
           meta: {
-            title: '权限管理',
-            role: 'admin'
+            title: "权限管理",
+            role: "admin"
           }
         },
         {
-          path: 'account',
-          name: 'account',
-          component: _import_('system/account/Index'),
+          path: "account",
+          name: "account",
+          component: _import_("system/account/Index"),
           meta: {
-            title: '账号管理',
-            role: 'admin'
+            title: "账号管理",
+            role: "admin"
           }
         },
         {
-          path: 'role',
-          name: 'role',
-          component: _import_('system/role/Index'),
+          path: "role",
+          name: "role",
+          component: _import_("system/role/Index"),
           meta: {
-            title: '角色管理',
-            role: 'admin'
+            title: "角色管理",
+            role: "admin"
           }
         },
         {
-          path: 'menu',
-          name: 'menu',
-          component: _import_('system/menu/Index'),
+          path: "menu",
+          name: "menu",
+          component: _import_("system/menu/Index"),
           meta: {
-            title: '菜单管理',
-            role: 'admin'
+            title: "菜单管理",
+            role: "admin"
           }
         },
         {
-          path: 'sensitive',
-          name: 'sensitive',
-          component: _import_('system/sensitive/Index'),
+          path: "sensitive",
+          name: "sensitive",
+          component: _import_("system/sensitive/Index"),
           meta: {
-            title: '敏感词汇',
-            role: 'admin'
+            title: "敏感词汇",
+            role: "admin"
           }
         },
         {
-          path: 'log',
-          name: 'log',
-          component: _import_('system/log/Index'),
+          path: "log",
+          name: "log",
+          component: _import_("system/log/Index"),
           meta: {
-            title: '操作日志',
-            role: 'admin'
+            title: "操作日志",
+            role: "admin"
           }
         }
       ]
     },
     {
-      path: 'userList',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/userList',
+      path: "userList",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/userList",
       children: [
         {
-          path: '/userList',
-          name: 'userList',
-          component: _import_('userList/Index'),
+          path: "/userList",
+          name: "userList",
+          component: _import_("userList/Index"),
           meta: {
-            title: '用户管理'
+            title: "用户管理"
           }
         },
         {
-          path: '/userDetail/:id',
-          name: 'userDetail',
-          component: _import_('userList/Detail'),
+          path: "/userDetail/:id",
+          name: "userDetail",
+          component: _import_("userList/Detail"),
           meta: {
-            title: '用户详情',
+            title: "用户详情",
             isChange: true
           }
         }
       ]
     },
     {
-      path: 'adviser',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/adviser',
+      path: "adviser",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/adviser",
       children: [
         {
-          path: '/adviser',
-          name: 'adviser',
-          component: _import_('adviser/Index'),
+          path: "/adviser",
+          name: "adviser",
+          component: _import_("adviser/Index"),
           meta: {
-            title: '顾问管理'
+            title: "顾问管理"
           }
         },
         {
-          path: '/adviserDetail/:id',
-          name: 'adviserDetail',
-          component: _import_('adviser/Detail'),
+          path: "/adviserDetail/:id",
+          name: "adviserDetail",
+          component: _import_("adviser/Detail"),
           meta: {
-            title: '顾问详情'
+            title: "顾问详情"
           }
         }
       ]
     },
     {
-      path: '/eva',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/eva',
+      path: "/eva",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/eva",
       children: [
         {
-          path: '/eva',
-          name: 'eva',
-          component: _import_('eva/Index'),
+          path: "/eva",
+          name: "eva",
+          component: _import_("eva/Index"),
           meta: {
-            title: '评价管理'
+            title: "评价管理"
           }
         }
       ]
     },
     {
-      path: 'complaints',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/complaints',
+      path: "complaints",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/complaints",
       children: [
         {
-          path: '/complaints',
-          name: 'complaints',
-          component: _import_('complaints/Index'),
+          path: "/complaints",
+          name: "complaints",
+          component: _import_("complaints/Index"),
           meta: {
-            title: '投诉管理',
-            role: 'admin'
+            title: "投诉管理",
+            role: "admin"
           }
         }
       ]
     },
     {
-      path: 'errorCount',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/errorCount',
+      path: "errorCount",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/errorCount",
       children: [
         {
-          path: '/errorCount',
-          name: 'errorCount',
-          component: _import_('errorCount/Index'),
+          path: "/errorCount",
+          name: "errorCount",
+          component: _import_("errorCount/Index"),
           meta: {
-            title: '报错统计',
-            role: 'admin'
+            title: "报错统计",
+            role: "admin"
           }
         }
       ]
     },
     {
-      path: 'testUtil',
-      name: '',
-      component: _import_('Layout'),
-      redirect: '/testUtil',
+      path: "testUtil",
+      name: "",
+      component: _import_("Layout"),
+      redirect: "/testUtil",
       children: [
         {
-          path: '/testUtil',
-          name: 'testUtil',
-          component: _import_('testUtil/Index'),
+          path: "/testUtil",
+          name: "testUtil",
+          component: _import_("testUtil/Index"),
           meta: {
-            title: '测试',
-            role: 'admin'
+            title: "测试",
+            role: "admin"
           }
         }
       ]
     },
     {
-      path: '/component',
-      name: 'component',
-      component: _import_('Layout'),
-      redirect: '/component/editor',
+      path: "/component",
+      name: "component",
+      component: _import_("Layout"),
+      redirect: "/component/editor",
       meta: {
-        title: '组件管理'
+        title: "组件管理"
       },
       children: [
         {
-          path: 'editor',
-          name: 'editor',
-          component: _import_('component/editor/Index'),
+          path: "editor",
+          name: "editor",
+          component: _import_("component/editor/Index"),
           meta: {
-            title: '富文本'
+            title: "富文本"
           }
         },
         {
-          path: 'upload',
-          name: 'upload',
-          component: _import_('component/upload/Index'),
+          path: "upload",
+          name: "upload",
+          component: _import_("component/upload/Index"),
           meta: {
-            title: '文件上传'
+            title: "文件上传"
           }
         },
         {
-          path: 'drag',
-          name: 'drag',
-          component: _import_('component/drag/Index'),
+          path: "drag",
+          name: "drag",
+          component: _import_("component/drag/Index"),
           meta: {
-            title: '拖拽排序'
+            title: "拖拽排序"
           }
         },
         {
-          path: 'cityLink',
-          name: 'cityLink',
-          component: _import_('component/cityLink/Index'),
+          path: "cityLink",
+          name: "cityLink",
+          component: _import_("component/cityLink/Index"),
           meta: {
-            title: '城市联动'
+            title: "城市联动"
           }
         }
       ]
     }
   ]
-})
+});

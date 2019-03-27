@@ -1,45 +1,45 @@
-let userInfo
+let userInfo;
 if (localStorage.userInfo) {
-  userInfo = JSON.parse(localStorage.userInfo)
+  userInfo = JSON.parse(localStorage.userInfo);
 } else {
-  userInfo = ''
+  userInfo = "";
 }
 const user = {
   state: {
     userInfo: userInfo,
-    message: '点击我',
+    message: "点击我",
     count: 1
   },
   mutations: {
     SET_MSG: (state, res) => {
-      state.message = res
+      state.message = res;
     },
     SET_COUNT: (state, res) => {
-      state.count = res
+      state.count = res;
     },
-    ADD_COUNT: (state) => {
-      state.count += 1
+    ADD_COUNT: state => {
+      state.count += 1;
     },
-    MINUS_COUNT: (state) => {
-      state.count -= 1
+    MINUS_COUNT: state => {
+      state.count -= 1;
     },
     SET_USER: (state, res) => {
-      state.userInfo = res
+      state.userInfo = res;
     }
   },
   actions: {
-    setmsg ({ commit }, res) {
-      commit('SET_MSG', res)
+    setmsg({ commit }, res) {
+      commit("SET_MSG", res);
     },
-    setcount ({ commit }, res) {
-      commit('SET_COUNT', res)
+    setcount({ commit }, res) {
+      commit("SET_COUNT", res);
     },
-    addCount ({commit}) {
-      commit('ADD_COUNT')
+    addCount({ commit }) {
+      commit("ADD_COUNT");
     },
-    minusCount ({commit}) {
-      commit('MINUS_COUNT')
+    minusCount({ commit }) {
+      commit("MINUS_COUNT");
     }
   }
-}
-export default user
+};
+export default user;

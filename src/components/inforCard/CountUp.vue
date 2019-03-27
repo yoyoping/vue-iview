@@ -1,6 +1,14 @@
 <template>
   <div>
-    <p :class="className" :style="{textAlign: 'center', color: color, fontSize: countSize, fontWeight: countWeight}">
+    <p
+      :class="className"
+      :style="{
+        textAlign: 'center',
+        color: color,
+        fontSize: countSize,
+        fontWeight: countWeight
+      }"
+    >
       <span v-cloak :id="idName">{{ startVal }}</span>
       <span>{{ unit }}</span>
     </p>
@@ -8,35 +16,35 @@
   </div>
 </template>
 <script>
-import CountUp from 'countup'
-function transformValue (val) {
-  let endVal = 0
-  let unit = ''
+import CountUp from "countup";
+function transformValue(val) {
+  let endVal = 0;
+  let unit = "";
   if (val < 1000) {
-    endVal = val
+    endVal = val;
   } else if (val >= 1000 && val < 1000000) {
-    endVal = parseInt(val / 1000)
-    unit = 'K+'
+    endVal = parseInt(val / 1000);
+    unit = "K+";
   } else if (val >= 1000000 && val < 10000000000) {
-    endVal = parseInt(val / 1000000)
-    unit = 'M+'
+    endVal = parseInt(val / 1000000);
+    unit = "M+";
   } else {
-    endVal = parseInt(val / 1000000000)
-    unit = 'B+'
+    endVal = parseInt(val / 1000000000);
+    unit = "B+";
   }
   return {
     val: endVal,
     unit: unit
-  }
+  };
 }
 export default {
-  data () {
+  data() {
     return {
-      unit: '',
+      unit: "",
       demo: {}
-    }
+    };
   },
-  name: 'countUp',
+  name: "countUp",
   props: {
     idName: String,
     className: String,
@@ -66,15 +74,15 @@ export default {
         return {
           useEasing: true,
           useGrouping: true,
-          separator: ',',
-          decimal: '.'
-        }
+          separator: ",",
+          decimal: "."
+        };
       }
     },
     color: String,
     countSize: {
       type: String,
-      default: '30px'
+      default: "30px"
     },
     countWeight: {
       type: Number,
@@ -82,27 +90,34 @@ export default {
     },
     introText: [String, Number]
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       setTimeout(() => {
-        let res = transformValue(this.endVal)
-        let endVal = res.val
-        this.unit = res.unit
-        let demo = {}
-        this.demo = demo = new CountUp(this.idName, this.startVal, endVal, this.decimals, this.duration, this.options)
+        let res = transformValue(this.endVal);
+        let endVal = res.val;
+        this.unit = res.unit;
+        let demo = {};
+        this.demo = demo = new CountUp(
+          this.idName,
+          this.startVal,
+          endVal,
+          this.decimals,
+          this.duration,
+          this.options
+        );
         if (!demo.error) {
-          demo.start()
+          demo.start();
         }
-      }, this.delay)
-    })
+      }, this.delay);
+    });
   },
   watch: {
-    endVal (val) {
-      let res = transformValue(val)
-      let endVal = res.val
-      this.unit = res.unit
-      this.demo.update(endVal)
+    endVal(val) {
+      let res = transformValue(val);
+      let endVal = res.val;
+      this.unit = res.unit;
+      this.demo.update(endVal);
     }
   }
-}
+};
 </script>

@@ -10,83 +10,87 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       columns1: [
         {
-          title: '序号',
-          key: 'No',
-          align: 'center',
+          title: "序号",
+          key: "No",
+          align: "center",
           width: 80,
           render: (h, params) => {
-            return h('span', params.index + 1)
+            return h("span", params.index + 1);
           }
         },
         {
-          title: 'ID',
-          key: 'id',
-          align: 'center',
+          title: "ID",
+          key: "id",
+          align: "center",
           width: 80
         },
         {
-          title: '用户名',
-          key: 'name',
-          align: 'center'
+          title: "用户名",
+          key: "name",
+          align: "center"
         },
         {
-          title: '时间',
-          key: 'time',
-          align: 'center'
+          title: "时间",
+          key: "time",
+          align: "center"
         },
         {
-          title: '错误内容',
-          key: 'errText',
-          align: 'center',
+          title: "错误内容",
+          key: "errText",
+          align: "center",
           render: (h, params) => {
-            return h('Tag', {
-              props: {
-                color: 'warning'
-              }
-            }, params.row.errText)
+            return h(
+              "Tag",
+              {
+                props: {
+                  color: "warning"
+                }
+              },
+              params.row.errText
+            );
           }
         },
         {
-          title: '系统版本',
-          key: 'version',
-          align: 'center'
+          title: "系统版本",
+          key: "version",
+          align: "center"
         }
       ],
       data1: [
         {
           id: 1,
-          name: 'John Brown',
-          time: '2018-12-12',
-          errText: '收不到短信验证码',
-          version: '1.0'
+          name: "John Brown",
+          time: "2018-12-12",
+          errText: "收不到短信验证码",
+          version: "1.0"
         },
         {
           id: 1,
-          name: 'John Brown',
-          time: '2018-12-12',
-          errText: '收不到短信验证码',
-          version: '1.0'
+          name: "John Brown",
+          time: "2018-12-12",
+          errText: "收不到短信验证码",
+          version: "1.0"
         },
         {
           id: 1,
-          name: 'John Brown',
-          time: '2018-12-12',
-          errText: '收不到短信验证码',
-          version: '1.0'
+          name: "John Brown",
+          time: "2018-12-12",
+          errText: "收不到短信验证码",
+          version: "1.0"
         },
         {
           id: 1,
-          name: 'John Brown',
-          time: '2018-12-12',
-          errText: '收不到短信验证码',
-          version: '1.0'
+          name: "John Brown",
+          time: "2018-12-12",
+          errText: "收不到短信验证码",
+          version: "1.0"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>

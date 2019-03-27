@@ -1,15 +1,21 @@
 <template>
   <Breadcrumb>
     <BreadcrumbItem to="/">首页</BreadcrumbItem>
-    <BreadcrumbItem v-if="$route.name !== 'home' && item.name !== ''" :to="item.path" v-for="item in $route.matched" :key="item.name">{{item.meta.title}}</BreadcrumbItem>
+    <span v-for="item in $route.matched" :key="item.name">
+      <BreadcrumbItem
+        v-if="$route.name !== 'home' && item.name !== ''"
+        :to="item.path"
+        >{{ item.meta.title }}</BreadcrumbItem
+      >
+    </span>
   </Breadcrumb>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       breadcrumbList: []
-    }
+    };
   }
-}
+};
 </script>

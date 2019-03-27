@@ -25,71 +25,75 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       formInline: {
-        name: '',
-        phone: ''
+        name: "",
+        phone: ""
       },
       columns1: [
         {
-          type: 'selection',
+          type: "selection",
           width: 60,
-          align: 'center'
+          align: "center"
         },
         {
-          title: '序号',
-          key: 'No',
-          align: 'center',
+          title: "序号",
+          key: "No",
+          align: "center",
           width: 80,
           render: (h, params) => {
-            return h('span', params.index + 1)
+            return h("span", params.index + 1);
           }
         },
         {
-          title: '评价用户（ID）',
-          key: 'id',
-          align: 'center'
+          title: "评价用户（ID）",
+          key: "id",
+          align: "center"
         },
         {
-          title: '评价星级',
-          key: 'stars',
-          align: 'center',
+          title: "评价星级",
+          key: "stars",
+          align: "center",
           render: (h, params) => {
-            return h('Rate', {
+            return h("Rate", {
               props: {
                 disabled: true,
                 value: params.row.stars
               }
-            })
+            });
           }
         },
         {
-          title: '评价原因',
-          key: 'reason',
-          align: 'center'
+          title: "评价原因",
+          key: "reason",
+          align: "center"
         },
         {
-          title: '评价时间',
-          key: 'time',
-          align: 'center'
+          title: "评价时间",
+          key: "time",
+          align: "center"
         },
         {
-          title: '操作',
-          key: 'action',
+          title: "操作",
+          key: "action",
           width: 100,
-          align: 'center',
+          align: "center",
           render: (h, params) => {
-            return h('Button', {
-              props: {
-                type: 'primary'
-              },
-              on: {
-                click: () => {
-                  alert('1')
+            return h(
+              "Button",
+              {
+                props: {
+                  type: "primary"
+                },
+                on: {
+                  click: () => {
+                    console.log(params);
+                  }
                 }
-              }
-            }, '处理')
+              },
+              "处理"
+            );
           }
         }
       ],
@@ -97,37 +101,36 @@ export default {
         {
           id: 1,
           stars: 4,
-          reason: '态度不好',
-          time: '2016-10-03'
+          reason: "态度不好",
+          time: "2016-10-03"
         },
         {
           id: 1,
           stars: 2,
-          reason: '态度不好',
-          time: '2016-10-03'
+          reason: "态度不好",
+          time: "2016-10-03"
         },
         {
           id: 1,
           stars: 4,
-          reason: '态度不好',
-          time: '2016-10-03'
+          reason: "态度不好",
+          time: "2016-10-03"
         },
         {
           id: 1,
           stars: 3,
-          reason: '态度不好',
-          time: '2016-10-03'
+          reason: "态度不好",
+          time: "2016-10-03"
         },
         {
           id: 1,
           stars: 4,
-          reason: '态度不好',
-          time: '2016-10-03'
+          reason: "态度不好",
+          time: "2016-10-03"
         }
       ]
-    }
+    };
   },
-  methods: {
-  }
-}
+  methods: {}
+};
 </script>

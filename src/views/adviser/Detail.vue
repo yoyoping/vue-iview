@@ -26,7 +26,7 @@
         <Col span="12"><label>当前状态：</label>正常</Col>
       </Row>
     </Card>
-    <br>
+    <br />
     <Card shadow>
       <p slot="title">
         <Icon type="ios-film-outline"></Icon>
@@ -48,10 +48,13 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.ivu-col{
+.ivu-col {
   margin: 10px 0;
-  label{
-    display: inline-block; width: 100px; text-align: right;margin-right: 10px;
+  label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
   }
 }
 </style>

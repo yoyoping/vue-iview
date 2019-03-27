@@ -10,7 +10,13 @@
           <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
         </div>
         <ul id="todoList" class="scroll">
-          <li v-for="(item, index) in todoList" :key="index" :data-index="index">{{item.content}}</li>
+          <li
+            v-for="(item, index) in todoList"
+            :key="index"
+            :data-index="index"
+          >
+            {{ item.content }}
+          </li>
         </ul>
       </Card>
     </Row>
@@ -25,7 +31,13 @@
             <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
           </div>
           <ul id="nodoList" class="scroll">
-            <li v-for="(item, index) in nodoList" :key="index" :data-index="index">{{item.content}}</li>
+            <li
+              v-for="(item, index) in nodoList"
+              :key="index"
+              :data-index="index"
+            >
+              {{ item.content }}
+            </li>
           </ul>
         </Card>
       </Col>
@@ -38,9 +50,7 @@
             </span>
             <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
           </div>
-          <ul id="doList" class="scroll">
-
-          </ul>
+          <ul id="doList" class="scroll"></ul>
         </Card>
       </Col>
       <Col span="8">
@@ -53,7 +63,13 @@
             <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
           </div>
           <ul id="ydoList" class="scroll">
-            <li v-for="(item, index) in doneList" :key="index" :data-index="index">{{item.content}}</li>
+            <li
+              v-for="(item, index) in doneList"
+              :key="index"
+              :data-index="index"
+            >
+              {{ item.content }}
+            </li>
           </ul>
         </Card>
       </Col>
@@ -61,130 +77,134 @@
   </div>
 </template>
 <script>
-import Sortable from 'sortablejs'
+import Sortable from "sortablejs";
 export default {
-  data () {
+  data() {
     return {
       todoList: [
         {
-          content: '这是第1条数据'
+          content: "这是第1条数据"
         },
         {
-          content: '这是第2条数据'
+          content: "这是第2条数据"
         },
         {
-          content: '这是第3条数据'
+          content: "这是第3条数据"
         },
         {
-          content: '这是第4条数据'
+          content: "这是第4条数据"
         },
         {
-          content: '这是第5条数据'
+          content: "这是第5条数据"
         },
         {
-          content: '这是第6条数据'
+          content: "这是第6条数据"
         },
         {
-          content: '这是第7条数据'
+          content: "这是第7条数据"
         },
         {
-          content: '这是第8条数据'
+          content: "这是第8条数据"
         },
         {
-          content: '这是第9条数据'
+          content: "这是第9条数据"
         },
         {
-          content: '这是第10条数据'
+          content: "这是第10条数据"
         }
       ],
       nodoList: [
         {
-          content: '搭建项目框架'
+          content: "搭建项目框架"
         },
         {
-          content: '切图'
+          content: "切图"
         },
         {
-          content: '开发项目'
+          content: "开发项目"
         },
         {
-          content: '修改bug'
+          content: "修改bug"
         },
         {
-          content: '打包上线'
+          content: "打包上线"
         },
         {
-          content: '更新维护'
+          content: "更新维护"
         },
         {
-          content: '清除重建'
+          content: "清除重建"
         }
       ],
       doneList: []
-    }
+    };
   },
-  mounted () {
-    document.body.ondrop = function (event) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  mounted() {
+    document.body.ondrop = function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    };
 
     // 拖动排序
-    let todoList = document.getElementById('todoList')
-    let sortaleArr
+    let todoList = document.getElementById("todoList");
+    let sortaleArr;
     let todoListSort = Sortable.create(todoList, {
       group: {
-        name: 'list',
+        name: "list",
         pull: true
       },
       animation: 120,
-      ghostClass: 'placeholder-style',
-      onUpdate: (event) => {
-        console.log(event)
+      ghostClass: "placeholder-style",
+      onUpdate: event => {
+        console.log(event);
         // 排序序列
-        sortaleArr = todoListSort.toArray()
-        console.log(sortaleArr)
+        sortaleArr = todoListSort.toArray();
+        console.log(sortaleArr);
       }
       // fallbackClass: 'iview-admin-cloned-item',
-    })
-    sortaleArr = todoListSort.toArray()
-    console.log(sortaleArr)
+    });
+    sortaleArr = todoListSort.toArray();
+    console.log(sortaleArr);
 
     // 未完成任务
-    let nodoList = document.getElementById('nodoList')
+    let nodoList = document.getElementById("nodoList");
     Sortable.create(nodoList, {
       group: {
-        name: 'list',
+        name: "list",
         pull: true
       },
-      filter: '.iview-admin-draggable-delete',
+      filter: ".iview-admin-draggable-delete",
       animation: 120,
-      fallbackClass: 'iview-admin-cloned-item',
-      onRemove: (event) => {
-        this.doneList.splice(event.newIndex, 0, this.nodoList[event.item.getAttribute('data-index')])
+      fallbackClass: "iview-admin-cloned-item",
+      onRemove: event => {
+        this.doneList.splice(
+          event.newIndex,
+          0,
+          this.nodoList[event.item.getAttribute("data-index")]
+        );
       }
-    })
+    });
 
     // 已完成任务
-    let doList = document.getElementById('doList')
+    let doList = document.getElementById("doList");
     Sortable.create(doList, {
       group: {
-        name: 'list',
+        name: "list",
         pull: true
       },
       sort: false,
-      filter: '.iview-admin-draggable-delete',
+      filter: ".iview-admin-draggable-delete",
       animation: 120,
-      fallbackClass: 'iview-admin-cloned-item',
-      onRemove: (event) => {
-        this.doneList.splice(event.oldIndex, 1)
+      fallbackClass: "iview-admin-cloned-item",
+      onRemove: event => {
+        this.doneList.splice(event.oldIndex, 1);
       }
-    })
+    });
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-li{
+li {
   width: 100%;
   height: 40px;
   line-height: 40px;
@@ -195,19 +215,19 @@ li{
   padding: 0 15px;
   overflow: hidden;
   margin-bottom: 10px;
-  &:hover{
+  &:hover {
     border-color: #87b4ee;
     color: #87b4ee;
   }
 }
-#todoList{
+#todoList {
   padding: 0 50px;
 }
-.scroll{
+.scroll {
   height: 300px;
   overflow-y: auto;
 }
-.mt{
+.mt {
   margin-top: 20px;
 }
 </style>

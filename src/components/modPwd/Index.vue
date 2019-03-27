@@ -7,8 +7,13 @@
       :width="400"
       @on-visible-change="change"
       title="修改密码"
+    >
+      <Form
+        ref="pwdForm"
+        :model="pwdForm"
+        :rules="pwdFormRule"
+        :label-width="80"
       >
-      <Form ref="pwdForm" :model="pwdForm" :rules="pwdFormRule" :label-width="80">
         <FormItem label="旧密码" prop="password">
           <Input type="password" v-model="pwdForm.password"></Input>
         </FormItem>
@@ -31,7 +36,7 @@
   </div>
 </template>
 <script>
-import { PUValid } from '@utils/check'
+import { PUValid } from "@utils/check";
 export default {
   props: {
     isShow: {
@@ -39,60 +44,63 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     // 确认密码
     const surePwdValid = (rule, value, callback) => {
       if (this.pwdForm.newPwd !== this.pwdForm.surePwd) {
-        callback(new Error('两次密码不一致'))
+        callback(new Error("两次密码不一致"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
 
     return {
       pwdForm: {
-        password: '',
-        password_new: '',
-        password_new_repeat: ''
+        password: "",
+        password_new: "",
+        password_new_repeat: ""
       },
       pwdFormRule: {
         password: [
-          { required: true, message: '请输入旧密码', trigger: 'blur' }
+          { required: true, message: "请输入旧密码", trigger: "blur" }
         ],
         password_new: [
-          { required: true, message: '请输入新密码', trigger: 'blur' },
-          { validator: PUValid, trigger: 'blur' }
+          { required: true, message: "请输入新密码", trigger: "blur" },
+          { validator: PUValid, trigger: "blur" }
         ],
         password_new_repeat: [
-          { required: true, message: '请再次输入密码', trigger: 'blur' },
-          { validator: surePwdValid, trigger: 'blur' }
+          { required: true, message: "请再次输入密码", trigger: "blur" },
+          { validator: surePwdValid, trigger: "blur" }
         ]
       }
-    }
+    };
   },
   methods: {
-    cancel () {
-      this.$refs['pwdForm'].resetFields()
-      this.$emit('closePwd')
+    cancel() {
+      this.$refs["pwdForm"].resetFields();
+      this.$emit("closePwd");
     },
-    ok () {
-      this.$refs['pwdForm'].validate((valid) => {
-        const params = this.pwdForm
-        this.cancel()
-        console.log(params)
+    ok() {
+      this.$refs["pwdForm"].validate(valid => {
         if (valid) {
           (async () => {
-            await this.axios.put('/personal/password', this.pwdForm)
-            this.$Message.success('修改密码成功')
-          })()
+            const params = {
+              code: "BS01",
+              method: "put",
+              ...this.pwdForm
+            };
+            await this.$fetch(params);
+            this.cancel();
+            this.$Message.success("修改密码成功！");
+          })();
         }
-      })
+      });
     },
-    change (val) {
+    change(val) {
       if (!val) {
-        this.cancel()
+        this.cancel();
       }
     }
   }
-}
+};
 </script>

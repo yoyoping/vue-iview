@@ -10,112 +10,119 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       columns1: [
         {
-          type: 'selection',
+          type: "selection",
           width: 60,
-          align: 'center'
+          align: "center"
         },
         {
-          title: '序号',
-          key: 'No',
-          align: 'center',
+          title: "序号",
+          key: "No",
+          align: "center",
           width: 80,
           render: (h, params) => {
-            return h('span', params.index + 1)
+            return h("span", params.index + 1);
           }
         },
         {
-          title: 'User',
-          key: 'user',
-          align: 'center'
+          title: "User",
+          key: "user",
+          align: "center"
         },
         {
-          title: 'Method',
-          key: 'method',
-          align: 'center',
+          title: "Method",
+          key: "method",
+          align: "center",
           render: (h, params) => {
-            return h('Tag', {
-              props: {
-                color: 'blue'
-              }
-            }, params.row.method)
+            return h(
+              "Tag",
+              {
+                props: {
+                  color: "blue"
+                }
+              },
+              params.row.method
+            );
           }
         },
         {
-          title: 'Path',
-          key: 'path',
-          align: 'center',
+          title: "Path",
+          key: "path",
+          align: "center",
           render: (h, params) => {
-            return h('Tag', {
-              props: {
-                color: 'green'
-              }
-            }, params.row.path)
+            return h(
+              "Tag",
+              {
+                props: {
+                  color: "green"
+                }
+              },
+              params.row.path
+            );
           }
         },
         {
-          title: 'IP',
-          key: 'path',
-          align: 'center',
+          title: "IP",
+          key: "path",
+          align: "center",
           render: (h, params) => {
-            return h('Tag', {
-            }, params.row.path)
+            return h("Tag", {}, params.row.path);
           }
         },
         {
-          title: '时间',
-          key: 'time',
-          align: 'center'
+          title: "时间",
+          key: "time",
+          align: "center"
         }
       ],
       data1: [
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         },
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         },
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         },
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         },
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         },
         {
-          user: 'admin',
-          method: 'post',
-          path: '/admin/user',
-          ip: '192.168.21.129',
-          time: '2018-12-12'
+          user: "admin",
+          method: "post",
+          path: "/admin/user",
+          ip: "192.168.21.129",
+          time: "2018-12-12"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>

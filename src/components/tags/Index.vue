@@ -9,8 +9,9 @@
           v-for="(item, index) in tags"
           :key="item.name"
           @click.native="linkTo(item.url)"
-          @on-close="close(index, item.name)">
-          {{item.title}}
+          @on-close="close(index, item.name)"
+        >
+          {{ item.title }}
         </Tag>
       </Col>
     </Row>
@@ -38,8 +39,8 @@
 <script>
 export default {
   computed: {
-    tags () {
-      return JSON.parse(this.$store.state.app.tags)
+    tags() {
+      return JSON.parse(this.$store.state.app.tags);
     }
     // tagChange () {
     // if (this.$store.state.app.tagChange === 'add') {
@@ -48,57 +49,56 @@ export default {
     // return this.$store.state.app.tagChange
     // }
   },
-  mounted () {
+  mounted() {
     // this.$nextTick(function () {
     //   console.log(this.$refs.tagList.$el.offsetHeight)
     //   if (this.$refs.tagList.$el.offsetHeight > 42) {
     //     console.log('超出')
     //   }
     // })
-
     // 窗口拖动就会更改标签
     // window.onresize = () => {
     //   this._tagChange()
     // }
   },
   methods: {
-    close (index, name) {
-      this.tags.splice(index, 1)
+    close(index, name) {
+      this.tags.splice(index, 1);
       if (name === this.$route.name) {
-        let url = this.tags[this.tags.length - 1].url
-        this.$router.push({path: url, query: { isKeep: true }})
+        let url = this.tags[this.tags.length - 1].url;
+        this.$router.push({ path: url, query: { isKeep: true } });
       }
-      this.$store.commit('TAGS', JSON.stringify(this.tags))
+      this.$store.commit("TAGS", JSON.stringify(this.tags));
     },
-    linkTo (url) {
-      this.$router.push(url)
-      this.$router.push({path: url, query: { isKeep: true }})
+    linkTo(url) {
+      this.$router.push(url);
+      this.$router.push({ path: url, query: { isKeep: true } });
     },
-    select (name) {
-      if (name === 'other') {
+    select(name) {
+      if (name === "other") {
         let current = {
-          title: '',
-          url: '',
-          name: ''
-        }
+          title: "",
+          url: "",
+          name: ""
+        };
         this.tags.forEach(item => {
           if (item.name === this.$route.name) {
-            current.title = item.title
-            current.url = item.url
-            current.name = item.name
+            current.title = item.title;
+            current.url = item.url;
+            current.name = item.name;
           }
-        })
-        this.tags.splice(1, this.tags.length)
-        this.tags.push(current)
-        this.$store.commit('TAGS', JSON.stringify(this.tags))
-      } else if (name === 'all') {
-        this.tags.splice(1, this.tags.length)
-        this.$store.commit('TAGS', JSON.stringify(this.tags))
-        this.$router.push({path: '/', query: { isKeep: true }})
+        });
+        this.tags.splice(1, this.tags.length);
+        this.tags.push(current);
+        this.$store.commit("TAGS", JSON.stringify(this.tags));
+      } else if (name === "all") {
+        this.tags.splice(1, this.tags.length);
+        this.$store.commit("TAGS", JSON.stringify(this.tags));
+        this.$router.push({ path: "/", query: { isKeep: true } });
       }
     },
     // 判断tag标签是否超出
-    _tagChange () {
+    _tagChange() {
       // this.$store.commit('SET_TAGCHANGE', 'less')
       // setTimeout(() => {
       //   if (this.$refs.tagList.$el.offsetHeight > 42) {
@@ -115,31 +115,43 @@ export default {
     }
   },
   watch: {
-    tagChange (val, oldVal) {
+    tagChange(val, oldVal) {
+      console.log(`tag改变`, val, oldVal);
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-.tags{
+.tags {
   height: 40px;
-  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);padding: 3px 20px;position: relative;
+  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, 0.1);
+  padding: 3px 20px;
+  position: relative;
 }
-.tagSelectCon{
-  position: absolute;bottom: 0;right: 0;height: 38px;background-color: #fff;padding: 0 20px;
+.tagSelectCon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 38px;
+  background-color: #fff;
+  padding: 0 20px;
   box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
-  .tagSelect{
-    margin-top: 10px;color: #fff;
-    background-color: #2d8cf0;border-radius: 3px;padding: 0 10px;
+  .tagSelect {
+    margin-top: 10px;
+    color: #fff;
+    background-color: #2d8cf0;
+    border-radius: 3px;
+    padding: 0 10px;
   }
-  .ivu-dropdown-rel a{
-    color: #fff;font-size: 12px;
+  .ivu-dropdown-rel a {
+    color: #fff;
+    font-size: 12px;
   }
 }
-.moreList{
+.moreList {
   position: absolute;
   right: 120px;
   top: 40px;
-  z-index: 5
+  z-index: 5;
 }
 </style>

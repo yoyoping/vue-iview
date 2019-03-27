@@ -7,7 +7,8 @@
       </p>
       <Row>
         <Col span="12">
-          <label>头像：</label><Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+          <label>头像：</label
+          ><Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
         </Col>
         <Col span="12"><label>用户id：</label>12</Col>
       </Row>
@@ -34,10 +35,13 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.ivu-col{
+.ivu-col {
   margin: 10px 0;
-  label{
-    display: inline-block; width: 100px; text-align: right;margin-right: 10px;
+  label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
   }
 }
 </style>

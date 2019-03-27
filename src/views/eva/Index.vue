@@ -11,16 +11,15 @@
   </div>
 </template>
 <script>
-import Unprocessed from './Unprocessed'
-import Processed from './Processed'
+import Unprocessed from "./Unprocessed";
+import Processed from "./Processed";
 export default {
   components: {
-    Unprocessed, Processed
+    Unprocessed,
+    Processed
   },
-  data () {
-    return {
-
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
