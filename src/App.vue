@@ -5,10 +5,11 @@
 </template>
 
 <script>
+import routes, { errRoute } from '@utils/routes'
 export default {
   name: "App",
   created() {
-    this.myGlobalMethod();
+    // this.myGlobalMethod();
   }
 };
 </script>

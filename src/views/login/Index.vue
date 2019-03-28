@@ -42,6 +42,7 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import Cookies from "js-cookie";
+import routes, { errRoute } from '@utils/routes'
 let roles_ = []; // 权限
 export default {
   data() {
@@ -135,13 +136,35 @@ export default {
               localStorage.userInfo = JSON.stringify(res.data.userInfo);
               this.$store.commit("SET_USER", res.data.userInfo);
               localStorage.roles = res.data.userInfo.roles.join("-");
-              this.$router.push("/");
+
+              // 模拟获取到了用户拥有的路由权限
+              // 假设这是从服务端获取的菜单
+              const menu = ['Layout', 'home', 'userList', 'adviser', 'eva', 'errorCount', 'system', 'auth', 'account', 'role']
+              sessionStorage.setItem('menu', JSON.stringify(menu))
+              this.getRoute(menu)
+
             })
             .catch(err => {
               this.$Message.error(err.message);
             });
         }
       });
+    },
+    getRoute (menu) {
+      // 循环所有路由列表判断不在获取的菜单列表里面就删除
+      _.remove(routes, n => {
+        if (n.children && n.children.length > 0) {
+          _.remove(n.children, m => {
+            return !menu.includes(m.name)
+          })
+        }
+        return !menu.includes(n.name)
+      })
+      this.$router.addRoutes(routes.concat(errRoute))
+      console.log(`wwwwwwwwwwwww`, routes.concat(errRoute))
+      // 将路由存在本地
+      sessionStorage.setItem('routes', JSON.stringify(routes.concat(errRoute)))
+      this.$router.push("/");
     }
   }
 };

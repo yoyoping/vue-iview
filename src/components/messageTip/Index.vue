@@ -6,7 +6,7 @@
       class="dfTooltip"
     >
       <Badge :count="value" dot>
-        <Icon type="ios-text" :size="23" />
+        <Icon type="md-notifications" :size="23" />
       </Badge>
     </Tooltip>
   </div>

@@ -3,8 +3,25 @@ import { Message, LoadingBar } from "iview";
 import Cookies from "js-cookie";
 let tags; // 本地标签
 console.log(router);
+
+// let registerRouteFresh = true
+
 // 路由钩子函数
 router.beforeEach((to, from, next) => {
+
+  //检测本地路由
+  // debugger
+  // if (registerRouteFresh) {
+  //   let localRoutes = sessionStorage.getItem('routes');
+  //   if(localRoutes){
+  //       router.addRoutes(JSON.parse(localRoutes));
+  //       console.log(JSON.parse(localRoutes))
+  //       registerRouteFresh = false
+  //       console.log(router)
+  //   }
+  // }
+  
+
   window.document.title = to.meta.title;
   // 拦截路由
   let roles;

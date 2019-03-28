@@ -120,4 +120,7 @@ export default {
   margin-right: 20px;
   // margin-left: 40px;
 }
+.main-user-name{
+  font-size: 14px;
+}
 </style>
