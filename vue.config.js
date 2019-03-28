@@ -12,6 +12,7 @@ module.exports = {
     config.resolve.alias
       // .set('@', resolve('src'))
       .set('@assets', resolve('src/assets'))
+      .set('@images', resolve('src/assets/images'))
       .set('@components', resolve('src/components'))
       .set('@utils', resolve('src/utils'))
       .set('@views', resolve('src/views'));
