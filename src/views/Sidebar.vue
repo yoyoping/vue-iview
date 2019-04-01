@@ -17,7 +17,7 @@
             {{ item.title }}
           </template>
           <router-link
-            :to="cls.url"
+            :to="cls.path"
             v-for="cls in item.children"
             :key="cls.name"
           >
@@ -26,7 +26,7 @@
             >
           </router-link>
         </Submenu>
-        <router-link :to="item.url" v-if="!item.children">
+        <router-link :to="item.path" v-if="!item.children">
           <MenuItem :name="item.name">
             <!-- <i class="iconfont" :class="item.icon"></i> -->
             <Icon :type="item.icon" />
@@ -50,7 +50,7 @@
             <DropdownItem
               v-for="cls in item.children"
               :key="cls.name"
-              :name="cls.name"
+              :name="cls.path"
             >
               <!-- <i class="iconfont shrinkIcon" :class="cls.icon"></i> -->
               <Icon :type="cls.icon" class="shrinkIcon" />
@@ -86,7 +86,7 @@ export default {
     },
     // 切换路由
     handleClickUserDropdown(name) {
-      this.$router.push({ name: name });
+      this.$router.push(name);
     }
   },
   watch: {
