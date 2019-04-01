@@ -8,7 +8,9 @@
         :collapsed-width="60"
         v-model="isCollapsed"
       >
-        <h1 class="logo" :class="{ shrink_: shrink }"><img src="~@assets/images/logo.png" height="64" alt=""></h1>
+        <h1 class="logo" :class="{ shrink_: shrink }">
+          <img src="~@assets/images/logo.png" height="64" alt="" />
+        </h1>
         <Sidebar :shrink="shrink"></Sidebar>
       </Sider>
       <Layout>
@@ -197,12 +199,15 @@ export default {
     font-size: 14px;
     padding: 0;
     text-align: center;
-    img{
-      display: block;margin: 12px auto;height: 40px;
+    img {
+      display: block;
+      margin: 12px auto;
+      height: 40px;
     }
   }
-  img{
-    display: block;margin: 0 auto;
+  img {
+    display: block;
+    margin: 0 auto;
   }
 }
 .action,

@@ -2,7 +2,8 @@
   <div class="error403">
     <div class="error403-body-con">
       <Card>
-        <div class="error403-body-con-title">4
+        <div class="error403-body-con-title">
+          4
           <span class="error403-0-span">
             <Icon type="android-lock"></Icon>
           </span>
@@ -12,8 +13,16 @@
         </div>
         <p class="error403-body-con-message">You don't have permission</p>
         <div class="error403-btn-con">
-          <Button @click="goHome" size="large" style="width: 200px;" type="text">返回首页</Button>
-          <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">回到上一页</Button>
+          <Button @click="goHome" size="large" style="width: 200px;" type="text"
+            >返回首页</Button
+          >
+          <Button
+            @click="backPage"
+            size="large"
+            style="width: 200px;margin-left: 40px;"
+            type="primary"
+            >回到上一页</Button
+          >
         </div>
       </Card>
     </div>
@@ -22,16 +31,16 @@
 
 <script>
 export default {
-  name: 'Error403',
+  name: "Error403",
   methods: {
-    backPage () {
-      this.$router.go(-1)
+    backPage() {
+      this.$router.go(-1);
     },
-    goHome () {
-      this.$router.push('/')
+    goHome() {
+      this.$router.push("/");
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-# myapp
+# vue-iview
 
 ## Project setup
 ```

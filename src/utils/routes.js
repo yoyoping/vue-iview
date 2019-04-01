@@ -174,25 +174,25 @@ const routes = [
       }
     ]
   }
-]
+];
 
 export const errRoute = [
   {
-    path: '/noPermissions',
-    name: 'noPermissions',
-    component: _import_('errorPage/403'),
+    path: "/noPermissions",
+    name: "noPermissions",
+    component: _import_("errorPage/403"),
     meta: {
-      title: '没权限访问'
+      title: "没权限访问"
     }
   },
   {
-    path: '*',
-    name: 'NotFound',
-    component: _import_('errorPage/404'),
+    path: "*",
+    name: "NotFound",
+    component: _import_("errorPage/404"),
     meta: {
-      title: '页面没找到'
+      title: "页面没找到"
     }
   }
-]
+];
 
-export default routes
+export default routes;

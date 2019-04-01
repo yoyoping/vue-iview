@@ -8,7 +8,6 @@ console.log(router);
 
 // 路由钩子函数
 router.beforeEach((to, from, next) => {
-
   //检测本地路由
   // debugger
   // if (registerRouteFresh) {
@@ -20,7 +19,6 @@ router.beforeEach((to, from, next) => {
   //       console.log(router)
   //   }
   // }
-  
 
   window.document.title = to.meta.title;
   // 拦截路由
