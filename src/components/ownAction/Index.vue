@@ -91,8 +91,10 @@ export default {
             this.$Message.success("退出成功");
             this.$router.push("/login");
             Cookies.remove("loginStatus");
-            localStorage.removeItem("userInfo");
-            localStorage.removeItem("roles");
+            // localStorage.removeItem("userInfo");
+            // localStorage.removeItem("roles");
+            localStorage.clear()
+            sessionStorage.clear()
           }
         });
       }

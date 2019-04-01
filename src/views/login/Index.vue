@@ -43,6 +43,8 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import Cookies from "js-cookie";
 import routes, { errRoute } from "@utils/routes";
+import newRouter from "../../router/originRoute";
+import { clone } from '@utils/app'
 let roles_ = []; // 权限
 export default {
   data() {
@@ -186,7 +188,9 @@ export default {
     },
     getRoute(menu) {
       // 循环所有路由列表判断不在获取的菜单列表里面就删除
-      this._.remove(routes, n => {
+      // 之所已使用深克隆是因为这里删除了会影响原来的routes，导致路由错误
+      const newRoutes = clone(routes)
+      this._.remove(newRoutes, n => {
         if (n.children && n.children.length > 0) {
           this._.remove(n.children, m => {
             return !menu.includes(m.name);
@@ -194,7 +198,8 @@ export default {
         }
         return !menu.includes(n.name);
       });
-      this.$router.addRoutes(routes.concat(errRoute));
+      this.$router.matcher = newRouter().matcher;
+      this.$router.addRoutes(newRoutes.concat(errRoute));
       // 将路由存在本地
       sessionStorage.setItem("routes", JSON.stringify(routes.concat(errRoute)));
       this.$router.push("/");
