@@ -10,7 +10,8 @@ const routes = [
     }
   }
 ];
-const createRouter = () => new Router({
-  routes
-});
-export default createRouter
+const createRouter = () =>
+  new Router({
+    routes
+  });
+export default createRouter;

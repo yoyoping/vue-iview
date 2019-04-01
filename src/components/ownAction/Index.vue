@@ -93,8 +93,8 @@ export default {
             Cookies.remove("loginStatus");
             // localStorage.removeItem("userInfo");
             // localStorage.removeItem("roles");
-            localStorage.clear()
-            sessionStorage.clear()
+            localStorage.clear();
+            sessionStorage.clear();
           }
         });
       }
