@@ -136,10 +136,33 @@ export default {
               localStorage.userInfo = JSON.stringify(res.data.userInfo);
               this.$store.commit("SET_USER", res.data.userInfo);
               localStorage.roles = res.data.userInfo.roles.join("-");
-
               // 模拟获取到了用户拥有的路由权限
               // 假设这是从服务端获取的菜单
-              const menu = [
+              console.log(res.data.userInfo.name)
+              let menu;
+              if (res.data.userInfo.name === 'admin') {
+                menu = [
+                "Layout",
+                "home",
+                "userList",
+                "adviser",
+                "eva",
+                "errorCount",
+                "system",
+                "auth",
+                "account",
+                "role",
+                "menu",
+                "log",
+                "component",
+                "editor",
+                "upload",
+                "drag",
+                "cityLink"
+              ];
+                
+              } else {
+                menu = [
                 "Layout",
                 "home",
                 "userList",
@@ -151,6 +174,7 @@ export default {
                 "account",
                 "role"
               ];
+              }
               sessionStorage.setItem("menu", JSON.stringify(menu));
               this.getRoute(menu);
             })
@@ -171,7 +195,6 @@ export default {
         return !menu.includes(n.name);
       });
       this.$router.addRoutes(routes.concat(errRoute));
-      console.log(`wwwwwwwwwwwww`, routes.concat(errRoute));
       // 将路由存在本地
       sessionStorage.setItem("routes", JSON.stringify(routes.concat(errRoute)));
       this.$router.push("/");
