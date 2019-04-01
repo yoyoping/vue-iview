@@ -12,7 +12,8 @@
       <div v-for="item in menulist" :key="item.name">
         <Submenu :name="item.name" v-if="item.children">
           <template slot="title">
-            <i class="iconfont" :class="item.icon"></i>
+            <!-- <i class="iconfont" :class="item.icon"></i> -->
+            <Icon :type="item.icon"/>
             {{ item.title }}
           </template>
           <router-link
@@ -21,14 +22,14 @@
             :key="cls.name"
           >
             <MenuItem :name="cls.name">
-              <i class="iconfont" :class="cls.icon"></i
-              >{{ cls.title }}</MenuItem
+              <Icon :type="cls.icon"/>{{ cls.title }}</MenuItem
             >
           </router-link>
         </Submenu>
         <router-link :to="item.url" v-if="!item.children">
           <MenuItem :name="item.name">
-            <i class="iconfont" :class="item.icon"></i>
+            <!-- <i class="iconfont" :class="item.icon"></i> -->
+            <Icon :type="item.icon"/>
             <span>{{ item.title }}</span>
           </MenuItem>
         </router-link>
@@ -42,21 +43,23 @@
           @on-click="handleClickUserDropdown"
         >
           <a href="javascript:void(0)">
-            <i class="iconfont" :class="item.icon"></i>
+            <!-- <i class="iconfont" :class="item.icon"></i> -->
+            <Icon :type="item.icon" style="font-size: 18px;"/>
           </a>
           <DropdownMenu slot="list" v-if="item.children">
             <DropdownItem
               v-for="cls in item.children"
               :key="cls.name"
               :name="cls.name"
-              ><i class="iconfont shrinkIcon" :class="cls.icon"></i
-              >{{ cls.title }}</DropdownItem
+              >
+              <!-- <i class="iconfont shrinkIcon" :class="cls.icon"></i> -->
+              <Icon :type="cls.icon" class="shrinkIcon"/>
+              {{ cls.title }}</DropdownItem
             >
           </DropdownMenu>
           <DropdownMenu slot="list" v-if="!item.children">
             <DropdownItem :name="item.name"
-              ><i class="iconfont shrinkIcon" :class="item.icon"></i
-              >{{ item.title }}</DropdownItem
+              ><Icon :type="item.icon" class="shrinkIcon" />{{ item.title }}</DropdownItem
             >
           </DropdownMenu>
         </Dropdown>
@@ -145,6 +148,6 @@ export default {
   overflow-y: auto;
 }
 .shrinkIcon {
-  margin-right: 5px;
+  margin-right: 3px;
 }
 </style>
