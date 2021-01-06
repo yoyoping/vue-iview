@@ -1,5 +1,4 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin"); //Gzip
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -31,19 +30,7 @@ module.exports = {
           })
         ],
         optimization: {
-          minimizer: [
-            new UglifyJsPlugin({
-              // 取消打印断点
-              uglifyOptions: {
-                compress: {
-                  warnings: false,
-                  drop_console: true, //console
-                  drop_debugger: false,
-                  pure_funcs: ["console.log"] //移除console
-                }
-              }
-            })
-          ]
+          minimizer: []
         },
         // 取消关于打包报文件大小警告
         performance: {
