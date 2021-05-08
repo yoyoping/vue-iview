@@ -17,7 +17,7 @@
     "flyio": "^0.6.14",
     "iview": "^3.3.3",
     "js-cookie": "^2.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "sortablejs": "^1.8.4",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
